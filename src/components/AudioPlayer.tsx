@@ -28,33 +28,46 @@ const AudioPlayer: React.FC = () => {
   // Auto-play selected audio by default (no user prompt)
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !selectedAudio || userStopped) return; // Respect user stop
+    if (!audio || !selectedAudio) return;
 
     // Set audio properties for exclusive playback
     audio.loop = true;
     audio.volume = 0.3;
 
-    // Play by default without user interaction required
+    // Force play by default on every load with multiple attempts
     const playAudio = async () => {
       try {
+        // Reset audio to ensure fresh start
+        audio.currentTime = 0;
         await audio.play();
         setIsPlaying(true);
-        console.log('Audio started playing by default');
+        console.log('Audio started playing by default on load');
       } catch (error) {
-        // If browser blocks auto-play, just set state without showing prompt
-        console.log('Auto-play blocked by browser, audio ready for manual start:', error);
-        setIsPlaying(false);
+        // Multiple retry attempts for better success rate
+        console.log('Initial auto-play blocked, retrying...', error);
+        setTimeout(async () => {
+          try {
+            await audio.play();
+            setIsPlaying(true);
+            console.log('Audio started on retry');
+          } catch (retryError) {
+            console.log('Audio ready for manual start after retries:', retryError);
+            setIsPlaying(false);
+          }
+        }, 500);
       }
     };
 
+    // Multiple attempts to ensure playback
     playAudio();
 
     return () => {
       if (audio) {
         audio.pause();
+        audio.currentTime = 0;
       }
     };
-  }, [selectedAudio, userStopped]);
+  }, [selectedAudio]);
 
   const togglePlayPause = async () => {
     const audio = audioRef.current;

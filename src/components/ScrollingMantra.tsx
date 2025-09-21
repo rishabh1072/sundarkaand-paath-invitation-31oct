@@ -20,7 +20,7 @@ const ScrollingMantra: React.FC = () => {
   }, [mantras.length]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
       {/* Multiple centered instances for continuous frequent scrolling */}
       <div className="absolute left-1/2 top-0 h-full flex items-center justify-center" style={{ transform: 'translateX(-50%)' }}>
         <div className="animate-scrollUp text-sacred-gold/15 text-8xl font-bold hindi-text whitespace-nowrap text-center">
@@ -53,7 +53,7 @@ const ScrollingMantra: React.FC = () => {
       </div>
 
       {/* CSS Keyframes - Slowed down by 30% */}
-      <style jsx>{`
+      <style>{`
         @keyframes scrollUp {
           0% {
             transform: translateY(100vh);
@@ -100,23 +100,23 @@ const ScrollingMantra: React.FC = () => {
         }
         
         .animate-scrollUp {
-          animation: scrollUp 7.8s linear infinite;
+          animation: scrollUp 11.2s linear infinite;
         }
         
         .animate-scrollUp2 {
-          animation: scrollUp2 9.1s linear infinite;
+          animation: scrollUp2 13s linear infinite;
         }
         
         .animate-scrollUp3 {
-          animation: scrollUp3 6.5s linear infinite;
+          animation: scrollUp3 9.4s linear infinite;
         }
         
         .animate-scrollUp4 {
-          animation: scrollUp4 10.4s linear infinite;
+          animation: scrollUp4 14.9s linear infinite;
         }
         
         .animate-scrollUp5 {
-          animation: scrollUp5 8.45s linear infinite;
+          animation: scrollUp5 12.1s linear infinite;
         }
       `}</style>
     </div>

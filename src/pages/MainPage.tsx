@@ -8,9 +8,16 @@ import LanguageToggle from '@/components/LanguageToggle';
 import ScrollingMantra from '@/components/ScrollingMantra';
 import AudioPlayer from '@/components/AudioPlayer';
 import TempleBells from '@/components/TempleBells';
-import hanumanBg from '@/assets/ram-darbar-bg.png';
+import bg2 from '@/assets/background/bg-2.png';
+import bg3 from '@/assets/background/bg-3.png';
+import bg4 from '@/assets/background/bg-4.png';
+import bg5 from '@/assets/background/bg-5.png';
+import bg6 from '@/assets/background/bg-6.png';
+import ramDarbarBg from '@/assets/background/ram-darbar-bg.png';
 import hanumanPortrait from '@/assets/hanuman-meditation.png';
 import decorativeBorder from '@/assets/decorative-border.jpg';
+
+const backgroundImages = [bg2, bg3, bg4, bg5, bg6, ramDarbarBg];
 
 const MainPage = () => {
   const { t, language } = useLanguage();
@@ -47,25 +54,44 @@ const MainPage = () => {
     window.open(`https://maps.google.com?q=${coordinates}`, '_blank');
   };
 
+  const [currentBgIdx, setCurrentBgIdx] = useState(() => Math.floor(Math.random() * backgroundImages.length));
+  const [fade, setFade] = useState(false);
+
+  // Change background every 8 seconds, random, no immediate repeat, with smooth fade
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(true);
+      setTimeout(() => {
+        setFade(false);
+        setCurrentBgIdx(prevIdx => {
+          let nextIdx;
+          do {
+            nextIdx = Math.floor(Math.random() * backgroundImages.length);
+          } while (nextIdx === prevIdx);
+          return nextIdx;
+        });
+      }, 8000); // fade duration matches transition
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col overflow-hidden">
-      {/* Top Decorative Border */}
-      <div
-        className="w-full h-12 sm:h-16 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: `url(${decorativeBorder})` }}
-      />
-
       {/* Middle Section with background image and all overlays/content */}
-      <div
-        className="relative flex-1 overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.8)), url(${hanumanBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundAttachment: 'fixed',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
+      <div className="relative min-h-screen w-full overflow-hidden">
+        {/* Background image with gradient and extra smooth fade */}
+        <div
+          className={`absolute inset-0 w-full h-full transition-opacity ${fade ? 'opacity-0' : 'opacity-100'}`}
+          style={{
+            transition: 'opacity 8s cubic-bezier(0.4, 0, 0.2, 1)',
+            backgroundImage: `linear-gradient(rgba(128, 0, 0, 0.7), rgba(128, 0, 0, 0.8)), url(${backgroundImages[currentBgIdx]})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat',
+            zIndex: 0,
+          }}
+        />
         {/* Temple Bells Animation */}
         <TempleBells />
 
@@ -243,12 +269,6 @@ const MainPage = () => {
           </Tabs>
         </div>
       </div>
-
-      {/* Bottom Decorative Border */}
-      <div
-        className="w-full h-8 sm:h-12 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: `url(${decorativeBorder})` }}
-      />
     </div>
   );
 };

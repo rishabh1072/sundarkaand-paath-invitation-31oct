@@ -1,60 +1,58 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Play } from 'lucide-react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 
 const AudioPlayer: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true); // Start as true for default playback
   const [isMuted, setIsMuted] = useState(false);
-  const [showPlayPrompt, setShowPlayPrompt] = useState(false);
   const [selectedAudio, setSelectedAudio] = useState<string>('');
+  const [userStopped, setUserStopped] = useState(false); // Track if user manually stopped
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Array of available audio files (moved outside useEffect to avoid dependency warning)
-  const audioFiles = [
+  // Memoize audio files array to prevent dependency changes
+  const audioFiles = useMemo(() => [
     '/audios/Bajrang_Baan.mp3',
     '/audios/Sankat_Mochan_Naam_Tiharo.mp3',
     '/audios/Sankatmochan_Hanuman_Ashtak.mp3'
-  ];
+  ], []);
 
-  // Randomly select an audio file on component mount
+  // Randomly select an audio file on component mount (exclusive selection)
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * audioFiles.length);
     const randomAudio = audioFiles[randomIndex];
     setSelectedAudio(randomAudio);
-    console.log('Selected random audio:', randomAudio);
+    console.log('Selected random audio for exclusive playback:', randomAudio);
   }, [audioFiles]);
 
+  // Auto-play selected audio by default (no user prompt)
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !selectedAudio) return;
+    if (!audio || !selectedAudio || userStopped) return; // Respect user stop
 
-    // Set audio properties
+    // Set audio properties for exclusive playback
     audio.loop = true;
-    audio.volume = 0.3; // Set to 30% volume by default
+    audio.volume = 0.3;
 
-    // Try auto-play after a short delay to improve success rate
-    const attemptAutoPlay = async () => {
+    // Play by default without user interaction required
+    const playAudio = async () => {
       try {
         await audio.play();
         setIsPlaying(true);
-        setShowPlayPrompt(false);
+        console.log('Audio started playing by default');
       } catch (error) {
-        // Auto-play blocked by browser - show prompt for user interaction
-        console.log('Auto-play blocked by browser:', error);
+        // If browser blocks auto-play, just set state without showing prompt
+        console.log('Auto-play blocked by browser, audio ready for manual start:', error);
         setIsPlaying(false);
-        setShowPlayPrompt(true);
       }
     };
 
-    // Attempt auto-play after a short delay
-    const timer = setTimeout(attemptAutoPlay, 1000);
+    playAudio();
 
     return () => {
-      clearTimeout(timer);
       if (audio) {
         audio.pause();
       }
     };
-  }, [selectedAudio]);
+  }, [selectedAudio, userStopped]);
 
   const togglePlayPause = async () => {
     const audio = audioRef.current;
@@ -64,10 +62,11 @@ const AudioPlayer: React.FC = () => {
       if (isPlaying) {
         audio.pause();
         setIsPlaying(false);
+        setUserStopped(true); // Mark as user-stopped to prevent auto-resume
       } else {
         await audio.play();
         setIsPlaying(true);
-        setShowPlayPrompt(false);
+        setUserStopped(false); // Reset user-stopped flag when user starts
       }
     } catch (error) {
       console.error('Audio control error:', error);
@@ -82,19 +81,6 @@ const AudioPlayer: React.FC = () => {
     setIsMuted(!isMuted);
   };
 
-  const startAudio = async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    try {
-      await audio.play();
-      setIsPlaying(true);
-      setShowPlayPrompt(false);
-    } catch (error) {
-      console.error('Failed to start audio:', error);
-    }
-  };
-
   // Don't render until audio file is selected
   if (!selectedAudio) {
     return null;
@@ -102,38 +88,13 @@ const AudioPlayer: React.FC = () => {
 
   return (
     <>
-      {/* Audio element with randomly selected source */}
+      {/* Audio element with randomly selected source for exclusive playback */}
       <audio
         ref={audioRef}
         preload="auto"
         src={selectedAudio}
       />
 
-      {/* Play prompt overlay when auto-play is blocked */}
-      {showPlayPrompt && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-sacred-red/90 border-2 border-sacred-gold rounded-2xl p-8 text-center max-w-md mx-4">
-            <div className="mb-6">
-              <div className="w-16 h-16 bg-sacred-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Volume2 className="w-8 h-8 text-sacred-gold" />
-              </div>
-              <h3 className="text-2xl font-bold text-sacred-gold mb-2 hindi-text">
-                श्री हनुमान चालीसा
-              </h3>
-              <p className="text-sacred-yellow">
-                Click to start the devotional background chant
-              </p>
-            </div>
-            <button
-              onClick={startAudio}
-              className="bg-sacred-gold hover:bg-sacred-yellow text-sacred-red font-bold py-3 px-6 rounded-full transition-colors duration-300 flex items-center mx-auto"
-            >
-              <Play className="w-5 h-5 mr-2" />
-              Start Chanting
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Audio controls - Bottom left */}
       <div className="fixed bottom-4 left-4 z-40 flex items-center gap-2">

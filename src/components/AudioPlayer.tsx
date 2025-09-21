@@ -11,6 +11,8 @@ const AudioPlayer: React.FC = () => {
   // Memoize audio files array to prevent dependency changes
   const audioFiles = useMemo(() => [
     '/audios/Bajrang_Baan.mp3',
+    '/audios/bajrang_baan_lofi.mp3',
+    '/audios/hanuman_chalisa_lofi.mp3',
     '/audios/Sankat_Mochan_Naam_Tiharo.mp3',
     '/audios/Sankatmochan_Hanuman_Ashtak.mp3'
   ], []);

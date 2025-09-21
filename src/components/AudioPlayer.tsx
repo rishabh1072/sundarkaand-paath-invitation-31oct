@@ -8,7 +8,7 @@ const AudioPlayer: React.FC = () => {
   const [selectedAudio, setSelectedAudio] = useState<string>('');
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Array of available audio files
+  // Array of available audio files (moved outside useEffect to avoid dependency warning)
   const audioFiles = [
     '/audios/Bajrang_Baan.mp3',
     '/audios/Sankat_Mochan_Naam_Tiharo.mp3',
@@ -21,7 +21,7 @@ const AudioPlayer: React.FC = () => {
     const randomAudio = audioFiles[randomIndex];
     setSelectedAudio(randomAudio);
     console.log('Selected random audio:', randomAudio);
-  }, []);
+  }, [audioFiles]);
 
   useEffect(() => {
     const audio = audioRef.current;

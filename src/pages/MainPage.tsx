@@ -17,6 +17,13 @@ const MainPage = () => {
   // Track active tab
   const [activeTab, setActiveTab] = useState<'welcome' | 'invitation'>('welcome');
 
+  // Create a proper handler for tab changes
+  const handleTabChange = (value: string) => {
+    if (value === 'welcome' || value === 'invitation') {
+      setActiveTab(value);
+    }
+  };
+
   // Auto-switch to invitation after 10 seconds
   useEffect(() => {
     if (activeTab === 'welcome') {
@@ -64,8 +71,8 @@ const MainPage = () => {
         style={{ backgroundImage: `url(${decorativeBorder})` }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-8">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-2 sm:px-4 py-4 sm:py-8 overflow-y-auto">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-8 bg-sacred-red/30 border border-sacred-gold">
             <TabsTrigger 
               value="welcome" 
@@ -85,76 +92,76 @@ const MainPage = () => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="welcome" className="space-y-8">
+          <TabsContent value="welcome" className="space-y-6 sm:space-y-8">
             {/* Welcome Page Content */}
-            <div className="flex flex-col items-center justify-center min-h-[80vh] text-center">
+            <div className="flex flex-col items-center justify-start min-h-0 text-center w-full">
               {/* Main Title */}
-              <div className="mb-8 animate-divine-pulse">
-                <h1 className={`text-6xl md:text-8xl font-bold temple-text mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="mb-6 sm:mb-8 animate-divine-pulse">
+                <h1 className={`text-4xl sm:text-6xl md:text-8xl font-bold temple-text mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('welcome.title')}
                 </h1>
-                <div className="w-32 h-1 golden-gradient mx-auto rounded-full animate-sacred-float"></div>
+                <div className="w-24 sm:w-32 h-1 golden-gradient mx-auto rounded-full animate-sacred-float"></div>
               </div>
 
               {/* Hanuman Portrait */}
-              <div className="relative mb-8 group">
+              <div className="relative mb-6 sm:mb-8 group w-full flex justify-center">
                 <div className="absolute inset-0 bg-sacred-gold/20 rounded-full blur-3xl animate-divine-pulse"></div>
                 <img 
                   src={hanumanPortrait} 
                   alt="Lord Hanuman" 
-                  className="relative w-80 h-80 md:w-96 md:h-96 object-cover rounded-full border-8 border-sacred-gold shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                  className="relative w-40 h-40 sm:w-80 sm:h-80 md:w-96 md:h-96 object-cover rounded-full border-4 sm:border-8 border-sacred-gold shadow-2xl group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 rounded-full bg-gradient-to-b from-transparent to-sacred-red/20"></div>
               </div>
 
               {/* Subtitle */}
-              <h2 className={`text-2xl md:text-4xl font-semibold text-sacred-yellow mb-8 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <h2 className={`text-lg sm:text-2xl md:text-4xl font-semibold text-sacred-yellow mb-6 sm:mb-8 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                 {t('welcome.subtitle')}
               </h2>
 
               {/* Blessing Text */}
-              <div className="devotional-card max-w-2xl mx-auto p-8 mb-12 rounded-2xl">
-                <h3 className={`text-xl md:text-2xl font-bold text-sacred-gold mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="devotional-card w-full max-w-md sm:max-w-2xl mx-auto p-4 sm:p-8 mb-8 sm:mb-12 rounded-2xl">
+                <h3 className={`text-lg sm:text-xl md:text-2xl font-bold text-sacred-gold mb-2 sm:mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('welcome.blessing')}
                 </h3>
-                <p className={`text-lg md:text-xl text-sacred-yellow leading-relaxed ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+                <p className={`text-base sm:text-lg md:text-xl text-sacred-yellow leading-relaxed ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('welcome.chalisa')}
                 </p>
               </div>
             </div>
           </TabsContent>
 
-          <TabsContent value="invitation" className="space-y-8">
+          <TabsContent value="invitation" className="space-y-6 sm:space-y-8">
             {/* Invitation Page Content */}
-            <Card className="devotional-card p-8 md:p-12 text-center">
+            <Card className="devotional-card w-full max-w-md sm:max-w-2xl mx-auto p-4 sm:p-8 md:p-12 text-center">
               {/* Title Section */}
-              <div className="mb-8">
-                <h1 className={`text-4xl md:text-6xl font-bold temple-text mb-2 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="mb-6 sm:mb-8">
+                <h1 className={`text-2xl sm:text-4xl md:text-6xl font-bold temple-text mb-2 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('welcome.title')}
                 </h1>
-                <div className="w-24 h-1 golden-gradient mx-auto rounded-full mb-6"></div>
-                <h2 className={`text-3xl md:text-5xl font-bold text-sacred-gold mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+                <div className="w-16 sm:w-24 h-1 golden-gradient mx-auto rounded-full mb-4 sm:mb-6"></div>
+                <h2 className={`text-xl sm:text-3xl md:text-5xl font-bold text-sacred-gold mb-2 sm:mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('invitation.title')}
                 </h2>
-                <h3 className={`text-2xl md:text-3xl text-sacred-yellow ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+                <h3 className={`text-lg sm:text-2xl md:text-3xl text-sacred-yellow ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('invitation.subtitle')}
                 </h3>
               </div>
 
               {/* Event Details */}
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-sacred-red/20 rounded-xl p-6 border-2 border-sacred-gold/30">
-                  <div className="flex items-center justify-center mb-4">
-                    <Calendar className="w-8 h-8 text-sacred-gold mr-3" />
-                    <h4 className={`text-xl font-bold text-sacred-gold ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                <div className="bg-sacred-red/20 rounded-xl p-4 sm:p-6 border-2 border-sacred-gold/30">
+                  <div className="flex items-center justify-center mb-2 sm:mb-4">
+                    <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-sacred-gold mr-2 sm:mr-3" />
+                    <h4 className={`text-base sm:text-xl font-bold text-sacred-gold ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                       {t('invitation.date')}
                     </h4>
                   </div>
                 </div>
 
-                <div className="bg-sacred-red/20 rounded-xl p-6 border-2 border-sacred-gold/30">
-                  <div className="flex items-center justify-center mb-4">
-                    <Clock className="w-8 h-8 text-sacred-gold mr-3" />
+                <div className="bg-sacred-red/20 rounded-xl p-4 sm:p-6 border-2 border-sacred-gold/30">
+                  <div className="flex items-center justify-center mb-2 sm:mb-4">
+                    <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-sacred-gold mr-2 sm:mr-3" />
                     <div className={`text-center ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                       <p className="text-sacred-yellow font-semibold">{t('invitation.puja')}</p>
                       <p className="text-sacred-yellow font-semibold">{t('invitation.pushpanjali')}</p>
@@ -165,14 +172,14 @@ const MainPage = () => {
               </div>
 
               {/* Venue Section */}
-              <div className="bg-sacred-red/20 rounded-xl p-6 border-2 border-sacred-gold/30 mb-8">
-                <div className="flex items-center justify-center mb-4">
-                  <MapPin className="w-8 h-8 text-sacred-gold mr-3" />
-                  <h4 className={`text-2xl font-bold text-sacred-gold ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="bg-sacred-red/20 rounded-xl p-4 sm:p-6 border-2 border-sacred-gold/30 mb-6 sm:mb-8">
+                <div className="flex items-center justify-center mb-2 sm:mb-4">
+                  <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-sacred-gold mr-2 sm:mr-3" />
+                  <h4 className={`text-lg sm:text-2xl font-bold text-sacred-gold ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                     {t('invitation.venue')}
                   </h4>
                 </div>
-                <p className={`text-xl text-sacred-yellow mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+                <p className={`text-base sm:text-xl text-sacred-yellow mb-2 sm:mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('invitation.address')}
                 </p>
                 <Button onClick={openMaps} variant="blessing">
@@ -184,25 +191,25 @@ const MainPage = () => {
               </div>
 
               {/* Blessing Message */}
-              <div className="mb-8">
-                <p className={`text-2xl md:text-3xl font-bold text-sacred-gold mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="mb-6 sm:mb-8">
+                <p className={`text-lg sm:text-2xl md:text-3xl font-bold text-sacred-gold mb-2 sm:mb-4 ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('invitation.blessing_text')}
                 </p>
-                <div className="w-32 h-1 golden-gradient mx-auto rounded-full"></div>
+                <div className="w-24 sm:w-32 h-1 golden-gradient mx-auto rounded-full"></div>
               </div>
 
               {/* Family Signature */}
-              <div className="mb-8">
-                <p className={`text-xl text-sacred-yellow italic ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
+              <div className="mb-6 sm:mb-8">
+                <p className={`text-base sm:text-xl text-sacred-yellow italic ${language === 'hindi' ? 'hindi-text' : 'font-playfair'}`}>
                   {t('invitation.regards')}
                 </p>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
                 <Button
                   onClick={shareOnWhatsApp}
-                  className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3"
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 sm:px-8 py-2 sm:py-3"
                 >
                   <Share2 className="w-5 h-5 mr-2" />
                   <span className={language === 'hindi' ? 'hindi-text' : 'font-playfair'}>
@@ -225,3 +232,4 @@ const MainPage = () => {
 };
 
 export default MainPage;
+

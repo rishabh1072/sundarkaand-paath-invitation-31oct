@@ -4,8 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import Welcome from "./pages/Welcome";
-import Invitation from "./pages/Invitation";
+import MainPage from "./pages/MainPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,10 +15,9 @@ const App = () => (
       <LanguageProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/hanuman-invitation' : ''}>
           <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/invitation" element={<Invitation />} />
+            <Route path="/" element={<MainPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

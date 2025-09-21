@@ -1,42 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Traditional Indian Religious Ceremony Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Traditional Sacred Colors */
+    --sacred-red: 0 80% 40%;
+    --sacred-orange: 15 90% 55%;
+    --sacred-gold: 45 95% 60%;
+    --sacred-yellow: 48 100% 75%;
+    --temple-red: 0 75% 35%;
+    --divine-saffron: 30 100% 65%;
+    
+    /* Main Color Palette */
+    --background: 0 80% 40%;
+    --foreground: 45 95% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 75% 35%;
+    --card-foreground: 45 95% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 75% 35%;
+    --popover-foreground: 45 95% 85%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 45 95% 60%;
+    --primary-foreground: 0 80% 20%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 30 100% 65%;
+    --secondary-foreground: 0 80% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 60% 50%;
+    --muted-foreground: 45 80% 75%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 48 100% 75%;
+    --accent-foreground: 0 80% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 70% 70%;
+    --input: 45 70% 70%;
+    --ring: 45 95% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    
+    /* Sacred Gradients */
+    --gradient-sacred: linear-gradient(135deg, hsl(var(--sacred-red)), hsl(var(--sacred-orange)));
+    --gradient-divine: linear-gradient(180deg, hsl(var(--temple-red)), hsl(var(--sacred-red)));
+    --gradient-golden: linear-gradient(135deg, hsl(var(--sacred-gold)), hsl(var(--sacred-yellow)));
+    --gradient-blessing: radial-gradient(circle, hsl(var(--divine-saffron) / 0.3), hsl(var(--sacred-red) / 0.8));
+    
+    /* Traditional Shadows */
+    --shadow-divine: 0 10px 40px hsl(var(--sacred-gold) / 0.4);
+    --shadow-sacred: 0 8px 32px hsl(var(--sacred-red) / 0.5);
+    --shadow-blessing: 0 0 50px hsl(var(--sacred-gold) / 0.6);
+    
+    /* Animation Timings */
+    --transition-sacred: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-blessing: all 0.8s ease-in-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +125,99 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .hindi-text {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+  }
+}
+
+@layer components {
+  /* Traditional Indian Patterns */
+  .pattern-border {
+    background-image: repeating-linear-gradient(
+      45deg,
+      hsl(var(--sacred-gold)),
+      hsl(var(--sacred-gold)) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+    border: 3px solid hsl(var(--sacred-gold));
+  }
+  
+  .divine-glow {
+    box-shadow: var(--shadow-blessing);
+    animation: divine-pulse 3s ease-in-out infinite;
+  }
+  
+  .sacred-gradient {
+    background: var(--gradient-sacred);
+  }
+  
+  .golden-gradient {
+    background: var(--gradient-golden);
+  }
+  
+  .blessing-gradient {
+    background: var(--gradient-blessing);
+  }
+  
+  .temple-text {
+    text-shadow: 2px 2px 4px hsl(var(--sacred-red) / 0.8);
+    color: hsl(var(--sacred-gold));
+  }
+  
+  .devotional-card {
+    background: hsl(var(--card));
+    border: 2px solid hsl(var(--sacred-gold));
+    box-shadow: var(--shadow-divine);
+    transition: var(--transition-sacred);
+  }
+  
+  .devotional-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-blessing);
+  }
+}
+
+@layer utilities {
+  .animate-divine-pulse {
+    animation: divine-pulse 3s ease-in-out infinite;
+  }
+  
+  .animate-sacred-float {
+    animation: sacred-float 4s ease-in-out infinite;
+  }
+  
+  .animate-blessing-rotate {
+    animation: blessing-rotate 20s linear infinite;
+  }
+}
+
+@keyframes divine-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--sacred-gold) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--sacred-gold) / 0.8);
+  }
+}
+
+@keyframes sacred-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blessing-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

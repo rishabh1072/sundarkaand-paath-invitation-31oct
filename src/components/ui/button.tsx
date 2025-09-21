@@ -15,6 +15,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        sacred: "bg-sacred-gold text-sacred-red hover:bg-sacred-yellow font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300",
+        divine: "bg-sacred-red text-sacred-gold border-2 border-sacred-gold hover:bg-temple-red hover:shadow-lg",
+        blessing: "bg-gradient-to-r from-sacred-gold to-sacred-yellow text-sacred-red hover:from-sacred-yellow hover:to-sacred-gold font-semibold shadow-md hover:shadow-lg",
       },
       size: {
         default: "h-10 px-4 py-2",

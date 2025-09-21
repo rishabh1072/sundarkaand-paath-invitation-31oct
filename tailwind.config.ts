@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'playfair': ['Playfair Display', 'serif'],
+        'devanagari': ['Noto Sans Devanagari', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +61,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Sacred traditional colors
+        'sacred-red': "hsl(var(--sacred-red))",
+        'sacred-orange': "hsl(var(--sacred-orange))",
+        'sacred-gold': "hsl(var(--sacred-gold))",
+        'sacred-yellow': "hsl(var(--sacred-yellow))",
+        'temple-red': "hsl(var(--temple-red))",
+        'divine-saffron': "hsl(var(--divine-saffron))",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -11,7 +11,7 @@ interface LanguageContextType {
 const translations = {
   hindi: {
     // Welcome Page
-    'welcome.title': 'जय जय हनुमान',
+    'welcome.title': 'जय श्री राम',
     'welcome.subtitle': 'सुंदरकांड पाठ एवं प्रसाद वितरण',
     'welcome.blessing': 'श्री हनुमान चालीसा',
     'welcome.chalisa': 'हनुमान जी महाराज की कृपा से आप सभी का कल्याण हो। श्री राम जी के परम भक्त बजरंगबली आप सभी को आशीर्वाद दें।',
@@ -38,7 +38,7 @@ const translations = {
   },
   english: {
     // Welcome Page
-    'welcome.title': 'Jai Jai Hanuman',
+    'welcome.title': 'Jai Shri Ram',
     'welcome.subtitle': 'Sundarkaand Path & Prasad Distribution',
     'welcome.blessing': 'Hanuman Chalisa Blessing',
     'welcome.chalisa': 'May Lord Hanuman bless you all with prosperity and peace. The devoted follower of Shri Ram, Bajrangbali, shower his divine blessings upon everyone.',

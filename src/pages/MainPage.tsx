@@ -7,8 +7,8 @@ import { MapPin, Share2, Calendar, Clock } from 'lucide-react';
 import LanguageToggle from '@/components/LanguageToggle';
 import ScrollingMantra from '@/components/ScrollingMantra';
 import AudioPlayer from '@/components/AudioPlayer';
-import hanumanBg from '@/assets/hanuman-bg.jpg';
-import hanumanPortrait from '@/assets/hanuman-portrait.jpg';
+import hanumanBg from '@/assets/ram-darbar-bg.png';
+import hanumanPortrait from '@/assets/hanuman-meditation.png';
 import decorativeBorder from '@/assets/decorative-border.jpg';
 
 const MainPage = () => {

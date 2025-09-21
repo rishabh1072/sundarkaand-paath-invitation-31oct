@@ -2,14 +2,30 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, Play } from 'lucide-react';
 
 const AudioPlayer: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false); // Start as false since auto-play is often blocked
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [showPlayPrompt, setShowPlayPrompt] = useState(false);
+  const [selectedAudio, setSelectedAudio] = useState<string>('');
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Array of available audio files
+  const audioFiles = [
+    '/audios/Bajrang_Baan.mp3',
+    '/audios/Sankat_Mochan_Naam_Tiharo.mp3',
+    '/audios/Sankatmochan_Hanuman_Ashtak.mp3'
+  ];
+
+  // Randomly select an audio file on component mount
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * audioFiles.length);
+    const randomAudio = audioFiles[randomIndex];
+    setSelectedAudio(randomAudio);
+    console.log('Selected random audio:', randomAudio);
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || !selectedAudio) return;
 
     // Set audio properties
     audio.loop = true;
@@ -38,7 +54,7 @@ const AudioPlayer: React.FC = () => {
         audio.pause();
       }
     };
-  }, []);
+  }, [selectedAudio]);
 
   const togglePlayPause = async () => {
     const audio = audioRef.current;
@@ -79,13 +95,18 @@ const AudioPlayer: React.FC = () => {
     }
   };
 
+  // Don't render until audio file is selected
+  if (!selectedAudio) {
+    return null;
+  }
+
   return (
     <>
-      {/* Audio element */}
+      {/* Audio element with randomly selected source */}
       <audio
         ref={audioRef}
         preload="auto"
-        src="/Sankat_Mochan_Naam_Tiharo.mp3"
+        src={selectedAudio}
       />
 
       {/* Play prompt overlay when auto-play is blocked */}

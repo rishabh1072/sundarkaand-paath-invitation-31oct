@@ -85,7 +85,7 @@ const AudioPlayer: React.FC = () => {
       <audio
         ref={audioRef}
         preload="auto"
-        src="/hanuman-chant.mp3"
+        src="/Sankat_Mochan_Naam_Tiharo.mp3"
       />
 
       {/* Play prompt overlay when auto-play is blocked */}

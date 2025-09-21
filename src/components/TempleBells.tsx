@@ -6,30 +6,30 @@ const TempleBells: React.FC = () => {
       {/* Red background layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-sacred-red/40 via-red-500/30 to-sacred-red/60 pointer-events-none -z-10"></div>
 
-      {/* Temple Bell 1 - Top Left */}
-      <div className="absolute top-16 left-16 animate-bell-sway-1">
-        <div className="text-sacred-gold/20 text-4xl transform-gpu">
+      {/* Temple Bell 1 - Top Left Corner */}
+      <div className="absolute top-0 left-0 m-4 animate-bell-sway-1">
+        <div className="text-sacred-gold text-[4rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
 
-      {/* Temple Bell 2 - Top Right */}
-      <div className="absolute top-20 right-20 animate-bell-sway-2">
-        <div className="text-sacred-gold/25 text-5xl transform-gpu">
+      {/* Temple Bell 2 - Top Right Corner */}
+      <div className="absolute top-0 right-0 m-4 animate-bell-sway-2">
+        <div className="text-sacred-gold text-[5rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
 
-      {/* Temple Bell 3 - Middle Left */}
-      <div className="absolute top-1/3 left-12 animate-bell-sway-3">
-        <div className="text-sacred-gold/15 text-3xl transform-gpu">
+      {/* Temple Bell 3 - Bottom Left Corner */}
+      <div className="absolute bottom-0 left-0 m-4 animate-bell-sway-3">
+        <div className="text-sacred-gold text-[3rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
 
-      {/* Temple Bell 4 - Middle Right */}
-      <div className="absolute top-2/5 right-16 animate-bell-sway-4">
-        <div className="text-sacred-gold/20 text-4xl transform-gpu">
+      {/* Temple Bell 4 - Bottom Right Corner */}
+      <div className="absolute bottom-0 right-0 m-4 animate-bell-sway-4">
+        <div className="text-sacred-gold text-[4rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
@@ -38,22 +38,22 @@ const TempleBells: React.FC = () => {
       <style>{`
         @keyframes bell-sway-1 {
           0%, 100% { transform: rotate(-2deg) translateY(0px); }
-          50% { transform: rotate(2deg) translateY(-3px); }
+          50% { transform: rotate(2deg) translateY(-10px); }
         }
         
         @keyframes bell-sway-2 {
-          0%, 100% { transform: rotate(1deg) translateY(-2px); }
+          0%, 100% { transform: rotate(1deg) translateY(-8px); }
           50% { transform: rotate(-1deg) translateY(0px); }
         }
         
         @keyframes bell-sway-3 {
-          0%, 100% { transform: rotate(-1deg) translateY(-1px); }
-          50% { transform: rotate(1deg) translateY(-4px); }
+          0%, 100% { transform: rotate(-1deg) translateY(-6px); }
+          50% { transform: rotate(1deg) translateY(-12px); }
         }
         
         @keyframes bell-sway-4 {
-          0%, 100% { transform: rotate(2deg) translateY(-2px); }
-          50% { transform: rotate(-2deg) translateY(-1px); }
+          0%, 100% { transform: rotate(2deg) translateY(-8px); }
+          50% { transform: rotate(-2deg) translateY(-6px); }
         }
         
         .animate-bell-sway-1 {

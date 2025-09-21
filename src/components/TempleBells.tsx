@@ -8,28 +8,28 @@ const TempleBells: React.FC = () => {
 
       {/* Temple Bell 1 - Top Left Corner */}
       <div className="absolute top-0 left-0 m-4 animate-bell-sway-1">
-        <div className="text-sacred-gold text-[4rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
+        <div className="text-sacred-gold text-[2.8rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
 
       {/* Temple Bell 2 - Top Right Corner */}
       <div className="absolute top-0 right-0 m-4 animate-bell-sway-2">
-        <div className="text-sacred-gold text-[5rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
+        <div className="text-sacred-gold text-[3.5rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
 
       {/* Temple Bell 3 - Bottom Left Corner */}
-      <div className="absolute bottom-0 left-0 m-4 animate-bell-sway-3">
-        <div className="text-sacred-gold text-[3rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
+      <div className="absolute bottom-20 left-8 animate-bell-sway-3">
+        <div className="text-sacred-gold text-[2.1rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>
 
       {/* Temple Bell 4 - Bottom Right Corner */}
       <div className="absolute bottom-0 right-0 m-4 animate-bell-sway-4">
-        <div className="text-sacred-gold text-[4rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
+        <div className="text-sacred-gold text-[2.8rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>
       </div>

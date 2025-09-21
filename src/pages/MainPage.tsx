@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Share2, Calendar, Clock } from 'lucide-react';
 import LanguageToggle from '@/components/LanguageToggle';
-import ChantAnimation from '@/components/ChantAnimation';
+import ScrollingMantra from '@/components/ScrollingMantra';
+import AudioPlayer from '@/components/AudioPlayer';
 import hanumanBg from '@/assets/hanuman-bg.jpg';
 import hanumanPortrait from '@/assets/hanuman-portrait.jpg';
 import decorativeBorder from '@/assets/decorative-border.jpg';
 
 const MainPage = () => {
   const { t, language } = useLanguage();
+
+  // Track active tab
+  const [activeTab, setActiveTab] = useState<'welcome' | 'invitation'>('welcome');
+
+  // Auto-switch to invitation after 10 seconds
+  useEffect(() => {
+    if (activeTab === 'welcome') {
+      const timer = setTimeout(() => {
+        setActiveTab('invitation');
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [activeTab]);
 
   const shareOnWhatsApp = () => {
     const message = encodeURIComponent(
@@ -34,8 +48,12 @@ const MainPage = () => {
            backgroundAttachment: 'fixed'
          }}>
       
-      <ChantAnimation />
-      
+      {/* Scrolling Mantra Background */}
+      <ScrollingMantra />
+
+      {/* Audio Player */}
+      <AudioPlayer />
+
       <div className="absolute top-4 right-4">
         <LanguageToggle />
       </div>
@@ -47,7 +65,7 @@ const MainPage = () => {
       />
 
       <div className="relative z-10 container mx-auto px-4 py-8">
-        <Tabs defaultValue="welcome" className="w-full">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-8 bg-sacred-red/30 border border-sacred-gold">
             <TabsTrigger 
               value="welcome" 

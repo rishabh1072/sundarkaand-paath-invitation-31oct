@@ -68,7 +68,7 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('english');
+  const [language, setLanguage] = useState<Language>('hindi');
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'english' ? 'hindi' : 'english');

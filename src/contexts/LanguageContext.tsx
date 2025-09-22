@@ -15,12 +15,12 @@ const translations = {
     'welcome.title': 'सुन्दरकाण्ड पाठ',
     'welcome.subtitle': 'सादर आमंत्रण',
     'welcome.blessing_title': '|| जय श्री राम ||',
-    'welcome.blessing': 'श्री हनुमान चालीसा',
-    'welcome.chalisa': 'हनुमान जी महाराज की कृपा से आप सभी का कल्याण हो। श्री राम जी के परम भक्त बजरंगबली आप सभी को आशीर्वाद दें।',
+    'welcome.blessing': 'विशेष निमंत्रण संदेश',
+    'welcome.chalisa': 'परमपिता परमात्मा की असीम अनुकम्पा से हमारे निवास स्थान पर सुंदरकांड पाठ का आयोजन किया जा रहा है। इस शुभ अवसर पर आप सादर आमंत्रित हैं। कृपया परिवार सहित पधार कर हमें अनुग्रहित करें।',
 
     // Host Information
-    'host.family': 'श्री [आयोजक का नाम] परिवार',
-    'host.invitation': 'हम आपको हार्दिक आमंत्रित करते हैं संपूर्ण सुन्दरकाण्ड के भव्य पाठ में',
+    'host.family': '',
+    'host.invitation': '',
 
     // Invitation Page - Event Details
     'invitation.title': 'सुन्दरकाण्ड पाठ',
@@ -55,12 +55,12 @@ const translations = {
     'welcome.title': 'Sundarkaand Paath',
     'welcome.subtitle': 'Cordial Invitation',
     'welcome.blessing_title': '|| Jai Shri Ram ||',
-    'welcome.blessing': 'Hanuman Chalisa Blessing',
-    'welcome.chalisa': 'May Lord Hanuman bless you all with prosperity and peace. The devoted follower of Shri Ram, Bajrangbali, shower his divine blessings upon everyone.',
+    'welcome.blessing': 'Special Invitation Message',
+    'welcome.chalisa': 'By the immense grace of the Supreme Lord, a Sundarkand recital is being organized at our residence. You are cordially invited to join us on this auspicious occasion with your family. Please honor us with your presence.',
 
     // Host Information
-    'host.family': 'The [Host Family Name] Family',
-    'host.invitation': 'cordially invites you to join us for the auspicious recitation of complete Sundarkaand Paath',
+    'host.family': '',
+    'host.invitation': '',
 
     // Invitation Page - Event Details
     'invitation.title': 'Sundarkaand Paath',

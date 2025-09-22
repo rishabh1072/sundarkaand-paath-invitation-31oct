@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 
-const AudioPlayer: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(true); // Start as true for default playback
+interface AudioPlayerProps {
+  audioEnabled?: boolean;
+}
+
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioEnabled = false }) => {
+  const [isPlaying, setIsPlaying] = useState(false); // Start as false, wait for consent
   const [isMuted, setIsMuted] = useState(false);
   const [selectedAudio, setSelectedAudio] = useState<string>('');
-  const [userStopped, setUserStopped] = useState(false); // Track if user manually stopped
+  const [userStopped, setUserStopped] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Use correct base path for audio files
@@ -19,23 +23,21 @@ const AudioPlayer: React.FC = () => {
     `${basePath}/audios/Sankatmochan_Hanuman_Ashtak.mp3`
   ], [basePath]);
 
-  // Randomly select an audio file on component mount (exclusive selection)
+  // Randomly select an audio file on component mount
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * audioFiles.length);
     const randomAudio = audioFiles[randomIndex];
     setSelectedAudio(randomAudio);
-    console.log('Selected random audio for exclusive playback:', randomAudio);
+    console.log('Selected random audio:', randomAudio);
   }, [audioFiles]);
 
-  // Auto-play selected audio by default (no user prompt)
+  // Auto-play selected audio when user consents
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio || !selectedAudio) return;
+    if (!audio || !selectedAudio || !audioEnabled) return;
 
     audio.loop = true;
     audio.volume = 0.3;
-
-    let interactionListener: (() => void) | null = null;
 
     const tryPlay = async () => {
       try {
@@ -48,26 +50,10 @@ const AudioPlayer: React.FC = () => {
         audio.currentTime = 0;
         await audio.play();
         setIsPlaying(true);
-        console.log('Audio started playing by default on load');
+        console.log('Audio started playing after user consent');
       } catch (error) {
-        console.log('Autoplay blocked, waiting for user interaction...', error);
+        console.log('Audio play failed:', error);
         setIsPlaying(false);
-        // Listen for first user interaction to trigger playback
-        interactionListener = async () => {
-          try {
-            await audio.play();
-            setIsPlaying(true);
-            window.removeEventListener('click', interactionListener!);
-            window.removeEventListener('keydown', interactionListener!);
-            window.removeEventListener('touchstart', interactionListener!);
-            console.log('Audio started after user interaction');
-          } catch (err) {
-            console.log('Still blocked after user interaction:', err);
-          }
-        };
-        window.addEventListener('click', interactionListener);
-        window.addEventListener('keydown', interactionListener);
-        window.addEventListener('touchstart', interactionListener);
       }
     };
 
@@ -78,42 +64,22 @@ const AudioPlayer: React.FC = () => {
         audio.pause();
         audio.currentTime = 0;
       }
-      if (interactionListener) {
-        window.removeEventListener('click', interactionListener);
-        window.removeEventListener('keydown', interactionListener);
-        window.removeEventListener('touchstart', interactionListener);
-      }
     };
-  }, [selectedAudio]);
-
-  // Play/pause logic fix
-  const handlePlayPause = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-      setUserStopped(true);
-    } else {
-      audio.play();
-      setIsPlaying(true);
-      setUserStopped(false);
-    }
-  };
+  }, [selectedAudio, audioEnabled]);
 
   const togglePlayPause = async () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || !audioEnabled) return;
 
     try {
       if (isPlaying) {
         audio.pause();
         setIsPlaying(false);
-        setUserStopped(true); // Mark as user-stopped to prevent auto-resume
+        setUserStopped(true);
       } else {
         await audio.play();
         setIsPlaying(true);
-        setUserStopped(false); // Reset user-stopped flag when user starts
+        setUserStopped(false);
       }
     } catch (error) {
       console.error('Audio control error:', error);
@@ -122,27 +88,25 @@ const AudioPlayer: React.FC = () => {
 
   const toggleMute = () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio || !audioEnabled) return;
 
     audio.muted = !audio.muted;
     setIsMuted(!isMuted);
   };
 
-  // Don't render until audio file is selected
-  if (!selectedAudio) {
+  // Don't render if audio not enabled or no audio file selected
+  if (!audioEnabled || !selectedAudio) {
     return null;
   }
 
   return (
     <>
-      {/* Audio element with randomly selected source for exclusive playback */}
+      {/* Audio element with randomly selected source */}
       <audio
         ref={audioRef}
         preload="auto"
         src={selectedAudio}
-        autoPlay
       />
-
 
       {/* Audio controls - Bottom left */}
       <div className="fixed bottom-4 left-4 z-40 flex items-center gap-2">

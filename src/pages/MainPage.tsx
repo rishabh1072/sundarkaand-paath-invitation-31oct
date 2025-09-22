@@ -209,7 +209,7 @@ const MainPage = () => {
                     </div>
 
                     {/* Blessing Text */}
-                    <div className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-3 sm:p-6 mb-6 sm:mb-8 rounded-2xl">
+                    <div className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-3 sm:p-6 mb-1 sm:mb-2 rounded-2xl">
                         <p className={`text-sm sm:text-base md:text-lg text-sacred-yellow leading-relaxed`}>
                             {t('welcome.chalisa')}
                         </p>

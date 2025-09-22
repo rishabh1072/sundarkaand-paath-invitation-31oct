@@ -210,9 +210,6 @@ const MainPage = () => {
 
                     {/* Blessing Text */}
                     <div className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-3 sm:p-6 mb-6 sm:mb-8 rounded-2xl">
-                        <h5 className={`text-base sm:text-lg md:text-xl font-bold text-sacred-gold mb-2 sm:mb-3`}>
-                            {t('welcome.blessing')}
-                        </h5>
                         <p className={`text-sm sm:text-base md:text-lg text-sacred-yellow leading-relaxed`}>
                             {t('welcome.chalisa')}
                         </p>

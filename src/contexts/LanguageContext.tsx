@@ -15,7 +15,6 @@ const translations = {
     'welcome.title': 'सुन्दरकाण्ड पाठ',
     'welcome.subtitle': 'सादर आमंत्रण',
     'welcome.blessing_title': '|| जय श्री राम ||',
-    'welcome.blessing': 'विशेष निमंत्रण संदेश',
     'welcome.chalisa': 'परमपिता परमात्मा की असीम अनुकम्पा से हमारे निवास स्थान पर सुंदरकांड पाठ का आयोजन किया जा रहा है। इस शुभ अवसर पर आप सादर आमंत्रित हैं। कृपया परिवार सहित पधार कर हमें अनुग्रहित करें।',
 
     // Host Information
@@ -55,7 +54,6 @@ const translations = {
     'welcome.title': 'Sundarkaand Paath',
     'welcome.subtitle': 'Cordial Invitation',
     'welcome.blessing_title': '|| Jai Shri Ram ||',
-    'welcome.blessing': 'Special Invitation Message',
     'welcome.chalisa': 'By the immense grace of the Supreme Lord, a Sundarkand recital is being organized at our residence. You are cordially invited to join us on this auspicious occasion with your family. Please honor us with your presence.',
 
     // Host Information

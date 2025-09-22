@@ -30,41 +30,56 @@ const AudioPlayer: React.FC = () => {
     const audio = audioRef.current;
     if (!audio || !selectedAudio) return;
 
-    // Set audio properties for exclusive playback
     audio.loop = true;
     audio.volume = 0.3;
 
-    // Force play by default on every load with multiple attempts
-    const playAudio = async () => {
+    let interactionListener: (() => void) | null = null;
+
+    const tryPlay = async () => {
       try {
-        // Reset audio to ensure fresh start
+        // Wait for audio to be loaded before playing
+        if (audio.readyState < 3) {
+          await new Promise(resolve => {
+            audio.addEventListener('canplaythrough', resolve, { once: true });
+          });
+        }
         audio.currentTime = 0;
         await audio.play();
         setIsPlaying(true);
         console.log('Audio started playing by default on load');
       } catch (error) {
-        // Multiple retry attempts for better success rate
-        console.log('Initial auto-play blocked, retrying...', error);
-        setTimeout(async () => {
+        console.log('Autoplay blocked, waiting for user interaction...', error);
+        setIsPlaying(false);
+        // Listen for first user interaction to trigger playback
+        interactionListener = async () => {
           try {
             await audio.play();
             setIsPlaying(true);
-            console.log('Audio started on retry');
-          } catch (retryError) {
-            console.log('Audio ready for manual start after retries:', retryError);
-            setIsPlaying(false);
+            window.removeEventListener('click', interactionListener!);
+            window.removeEventListener('keydown', interactionListener!);
+            window.removeEventListener('touchstart', interactionListener!);
+            console.log('Audio started after user interaction');
+          } catch (err) {
+            console.log('Still blocked after user interaction:', err);
           }
-        }, 500);
+        };
+        window.addEventListener('click', interactionListener);
+        window.addEventListener('keydown', interactionListener);
+        window.addEventListener('touchstart', interactionListener);
       }
     };
 
-    // Multiple attempts to ensure playback
-    playAudio();
+    tryPlay();
 
     return () => {
       if (audio) {
         audio.pause();
         audio.currentTime = 0;
+      }
+      if (interactionListener) {
+        window.removeEventListener('click', interactionListener);
+        window.removeEventListener('keydown', interactionListener);
+        window.removeEventListener('touchstart', interactionListener);
       }
     };
   }, [selectedAudio]);
@@ -108,6 +123,7 @@ const AudioPlayer: React.FC = () => {
         ref={audioRef}
         preload="auto"
         src={selectedAudio}
+        autoPlay
       />
 
 

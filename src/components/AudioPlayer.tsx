@@ -8,14 +8,16 @@ const AudioPlayer: React.FC = () => {
   const [userStopped, setUserStopped] = useState(false); // Track if user manually stopped
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Use correct base path for audio files
+  const basePath = process.env.NODE_ENV === 'production' ? '/hanuman-aashirwad-site' : '';
   // Memoize audio files array to prevent dependency changes
   const audioFiles = useMemo(() => [
-    '/audios/Bajrang_Baan.mp3',
-    '/audios/bajrang_baan_lofi.mp3',
-    '/audios/hanuman_chalisa_lofi.mp3',
-    '/audios/Sankat_Mochan_Naam_Tiharo.mp3',
-    '/audios/Sankatmochan_Hanuman_Ashtak.mp3'
-  ], []);
+    `${basePath}/audios/Bajrang_Baan.mp3`,
+    `${basePath}/audios/bajrang_baan_lofi.mp3`,
+    `${basePath}/audios/hanuman_chalisa_lofi.mp3`,
+    `${basePath}/audios/Sankat_Mochan_Naam_Tiharo.mp3`,
+    `${basePath}/audios/Sankatmochan_Hanuman_Ashtak.mp3`
+  ], [basePath]);
 
   // Randomly select an audio file on component mount (exclusive selection)
   useEffect(() => {
@@ -83,6 +85,21 @@ const AudioPlayer: React.FC = () => {
       }
     };
   }, [selectedAudio]);
+
+  // Play/pause logic fix
+  const handlePlayPause = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+      setUserStopped(true);
+    } else {
+      audio.play();
+      setIsPlaying(true);
+      setUserStopped(false);
+    }
+  };
 
   const togglePlayPause = async () => {
     const audio = audioRef.current;

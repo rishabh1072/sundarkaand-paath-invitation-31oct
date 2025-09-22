@@ -49,39 +49,59 @@ const MainPage = () => {
   };
 
   const [currentBgIdx, setCurrentBgIdx] = useState(() => Math.floor(Math.random() * backgroundImages.length));
+  const [prevBgIdx, setPrevBgIdx] = useState(currentBgIdx);
   const [fade, setFade] = useState(false);
 
-  // Change background every 8 seconds, random, no immediate repeat, with smooth fade
+  // Coordinated display/fade cycle for background images
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(true);
-      setTimeout(() => {
-        setFade(false);
-        setCurrentBgIdx(prevIdx => {
+    let displayTimer: NodeJS.Timeout;
+    let fadeTimer: NodeJS.Timeout;
+    let isUnmounted = false;
+
+    const startDisplayPhase = () => {
+      displayTimer = setTimeout(() => {
+        setFade(true);
+        fadeTimer = setTimeout(() => {
+          setFade(false);
+          setPrevBgIdx(currentBgIdx);
           let nextIdx;
           do {
             nextIdx = Math.floor(Math.random() * backgroundImages.length);
-          } while (nextIdx === prevIdx);
-          return nextIdx;
-        });
-      }, 8000); // fade duration matches transition
-    }, 8000);
-    return () => clearInterval(interval);
-  }, []);
+          } while (nextIdx === currentBgIdx);
+          setCurrentBgIdx(nextIdx);
+          if (!isUnmounted) startDisplayPhase();
+        }, 2000); // fade duration: 2s
+      }, 8000); // display duration: 8s
+    };
+
+    startDisplayPhase();
+
+    return () => {
+      isUnmounted = true;
+      clearTimeout(displayTimer);
+      clearTimeout(fadeTimer);
+    };
+  }, [currentBgIdx]);
 
   return (
     <div className="relative min-h-screen w-full flex flex-col items-center overflow-hidden" style={{ backgroundColor: '#b91c1c' }}>
-      {/* Background Image Layer */}
+      {/* Background Image Crossfade Layer */}
       <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
         <img
-          src={backgroundImages[currentBgIdx]}
-          alt="Background"
+          src={backgroundImages[prevBgIdx]}
+          alt="Background Prev"
           className={`w-full h-full object-cover transition-opacity duration-2000 ${fade ? 'opacity-0' : 'opacity-100'}`}
           style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
         />
+        <img
+          src={backgroundImages[currentBgIdx]}
+          alt="Background Current"
+          className={`w-full h-full object-cover transition-opacity duration-2000 ${fade ? 'opacity-100' : 'opacity-0'}`}
+          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+        />
       </div>
-      {/* Semi-transparent Red Overlay Layer */}
-      <div className="fixed inset-0 w-full h-full z-10 pointer-events-none" style={{ background: 'rgba(185,28,28,0.35)' }} />
+      {/* Stronger Semi-transparent Red Overlay Layer */}
+      <div className="fixed inset-0 w-full h-full z-10 pointer-events-none" style={{ background: 'rgba(185,28,28,0.5)' }} />
       {/* Foreground Content */}
       <LanguageToggle />
       <AudioPlayer />
@@ -92,7 +112,14 @@ const MainPage = () => {
 
         {/* Welcome Page Content */}
         <div className="flex flex-col items-center justify-start text-center w-full min-h-0">
-          {/* Main Title - Properly Centered "Jai Shri Ram" */}
+          {/* Invocation - Header Section */}
+          <div className="mb-2 sm:mb-4">
+            <h1 className={`text-lg sm:text-2xl md:text-3xl font-bold text-sacred-gold mb-2 text-center`}>
+              {t('welcome.invocation')}
+            </h1>
+          </div>
+
+          {/* Main Title - Properly Centered */}
           <div className="mb-4 sm:mb-6 animate-divine-pulse w-full flex flex-col items-center">
             <h1 className={`text-3xl sm:text-5xl md:text-7xl font-bold temple-text mb-3 text-center leading-tight`}>
               {t('welcome.title')}
@@ -100,8 +127,15 @@ const MainPage = () => {
             <div className="w-20 sm:w-28 h-1 golden-gradient mx-auto rounded-full animate-sacred-float"></div>
           </div>
 
-          {/* Hanuman Portrait */}
-          <div className="relative mb-4 sm:mb-6 group w-full flex justify-center">
+          {/* Subtitle */}
+          <div className="mb-6 sm:mb-8">
+            <h2 className={`text-xl sm:text-3xl md:text-4xl font-semibold text-sacred-yellow text-center`}>
+              {t('welcome.subtitle')}
+            </h2>
+          </div>
+
+          {/* Hanuman Portrait - moved lower */}
+          <div className="relative mb-8 sm:mb-12 group w-full flex justify-center">
             <div className="absolute inset-0 bg-sacred-gold/20 rounded-full blur-3xl animate-divine-pulse"></div>
             <img
               src={hanumanPortrait}
@@ -111,84 +145,81 @@ const MainPage = () => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-b from-transparent to-sacred-red/20"></div>
           </div>
 
-          {/* Subtitle */}
-          <h2 className={`text-base sm:text-xl md:text-2xl font-semibold text-sacred-yellow mb-4 sm:mb-6 text-center`}>
-            {t('welcome.subtitle')}
-          </h2>
-
-          {/* Blessing Text */}
-          <div className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-3 sm:p-6 mb-6 sm:mb-8 rounded-2xl">
-            <h3 className={`text-base sm:text-lg md:text-xl font-bold text-sacred-gold mb-2 sm:mb-3`}>
-              {t('welcome.blessing')}
+          {/* Blessing Title */}
+          <div className="mb-4 sm:mb-6">
+            <h3 className={`text-lg sm:text-2xl md:text-3xl font-bold text-sacred-gold text-center`}>
+              {t('welcome.blessing_title')}
             </h3>
-            <p className={`text-sm sm:text-base md:text-lg text-sacred-yellow leading-relaxed`}>
-              {t('welcome.chalisa')}
+          </div>
+
+          {/* Host Information */}
+          <div className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-4 sm:p-6 mb-6 sm:mb-8 rounded-2xl">
+            <h4 className={`text-base sm:text-lg md:text-xl font-bold text-sacred-gold mb-3 text-center`}>
+              {t('host.family')}
+            </h4>
+            <p className={`text-sm sm:text-base md:text-lg text-sacred-yellow leading-relaxed text-center`}>
+              {t('host.invitation')}
             </p>
           </div>
 
-          {/* निमंत्रण देखें Button - Visible and Functional */}
-          <div className="w-full flex justify-center">
-            <Button
-              onClick={() => invitationSectionRef.current?.scrollIntoView({ behavior: 'smooth' })}
-              variant="default"
-              className="bg-sacred-gold hover:bg-sacred-yellow text-sacred-red font-bold px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-            >
-              <span>
-                निमंत्रण देखें
-              </span>
-            </Button>
+          {/* Blessing Text */}
+          <div className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-3 sm:p-6 mb-6 sm:mb-8 rounded-2xl">
+            <h5 className={`text-base sm:text-lg md:text-xl font-bold text-sacred-gold mb-2 sm:mb-3`}>
+              {t('welcome.blessing')}
+            </h5>
+            <p className={`text-sm sm:text-base md:text-lg text-sacred-yellow leading-relaxed`}>
+              {t('welcome.chalisa')}
+            </p>
           </div>
         </div>
       </div>
       <div ref={invitationSectionRef} className="w-full max-w-3xl mx-auto py-12 px-4 z-10">
         {/* Invitation Section Content */}
-        <Card className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-3 sm:p-6 md:p-8 text-center">
-          {/* Title Section */}
-          <div className="mb-4 sm:mb-6">
-            <h1 className={`text-xl sm:text-3xl md:text-4xl font-bold temple-text mb-2 text-center`}>
-              {t('welcome.title')}
-            </h1>
-            <div className="w-12 sm:w-16 h-1 golden-gradient mx-auto rounded-full mb-3 sm:mb-4"></div>
-            <h2 className={`text-lg sm:text-2xl md:text-3xl font-bold text-sacred-gold mb-2 text-center`}>
+        <Card className="devotional-card w-full max-w-sm sm:max-w-lg mx-auto p-4 sm:p-6 md:p-8 text-center">
+          {/* Header Section */}
+          <div className="mb-6 sm:mb-8">
+            <h1 className={`text-xl sm:text-3xl md:text-4xl font-bold temple-text mb-3 text-center`}>
               {t('invitation.title')}
-            </h2>
-            <h3 className={`text-base sm:text-lg md:text-xl text-sacred-yellow text-center`}>
+            </h1>
+            <div className="w-16 sm:w-20 h-1 golden-gradient mx-auto rounded-full mb-4"></div>
+            <h2 className={`text-lg sm:text-xl md:text-2xl font-semibold text-sacred-gold text-center`}>
               {t('invitation.subtitle')}
-            </h3>
+            </h2>
           </div>
 
-          {/* Event Details */}
-          <div className="grid grid-cols-1 gap-3 sm:gap-4 mb-4 sm:mb-6">
-            <div className="bg-sacred-red/20 rounded-xl p-3 sm:p-4 border-2 border-sacred-gold/30">
-              <div className="flex items-center justify-center mb-2">
-                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-sacred-gold mr-2" />
-                <h4 className={`text-sm sm:text-base font-bold text-sacred-gold`}>
-                  {t('invitation.date')}
-                </h4>
-              </div>
+          {/* Date Section */}
+          <div className="bg-sacred-red/20 rounded-xl p-4 sm:p-5 border-2 border-sacred-gold/30 mb-4 sm:mb-6">
+            <div className="flex items-center justify-center mb-2">
+              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-sacred-gold mr-2" />
+              <h3 className={`text-base sm:text-lg font-bold text-sacred-gold text-center`}>
+                {t('invitation.date')}
+              </h3>
             </div>
+          </div>
 
-            <div className="bg-sacred-red/20 rounded-xl p-3 sm:p-4 border-2 border-sacred-gold/30">
-              <div className="flex items-center justify-center mb-2">
-                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-sacred-gold mr-2" />
-                <div className={`text-center`}>
-                  <p className="text-sacred-yellow font-semibold text-xs sm:text-sm">{t('invitation.puja')}</p>
-                  <p className="text-sacred-yellow font-semibold text-xs sm:text-sm">{t('invitation.pushpanjali')}</p>
-                  <p className="text-sacred-yellow font-semibold text-xs sm:text-sm">{t('invitation.prasad')}</p>
-                </div>
-              </div>
+          {/* Event Schedule */}
+          <div className="bg-sacred-red/20 rounded-xl p-4 sm:p-5 border-2 border-sacred-gold/30 mb-4 sm:mb-6">
+            <div className="flex items-center justify-center mb-3">
+              <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-sacred-gold mr-2" />
+              <h3 className={`text-base sm:text-lg font-bold text-sacred-gold`}>{t('invitation.subtitle')}</h3>
+            </div>
+            <div className={`text-center space-y-2`}>
+              <p className="text-sacred-yellow font-semibold text-sm sm:text-base">{t('invitation.puja')}</p>
+              <p className="text-sacred-yellow font-semibold text-sm sm:text-base">{t('invitation.aarti')}</p>
+              <p className="text-sacred-yellow font-semibold text-sm sm:text-base">{t('invitation.prasad')}</p>
+              <p className="text-sacred-yellow font-semibold text-sm sm:text-base">{t('invitation.feast')}</p>
             </div>
           </div>
 
           {/* Venue Section */}
-          <div className="bg-sacred-red/20 rounded-xl p-3 sm:p-4 border-2 border-sacred-gold/30 mb-4 sm:mb-6">
-            <div className="flex items-center justify-center mb-2">
+          <div className="bg-sacred-red/20 rounded-xl p-4 sm:p-5 border-2 border-sacred-gold/30 mb-4 sm:mb-6">
+            <div className="flex items-center justify-center mb-3">
               <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-sacred-gold mr-2" />
-              <h4 className={`text-base sm:text-lg font-bold text-sacred-gold`}>
+              <h3 className={`text-base sm:text-lg font-bold text-sacred-gold`}>
                 {t('invitation.venue')}
-              </h4>
+              </h3>
             </div>
-            <p className={`text-sm sm:text-base text-sacred-yellow mb-2 sm:mb-3`}>
+            <p className={`text-sm sm:text-base text-sacred-yellow mb-3 whitespace-pre-line text-center`}>
               {t('invitation.address')}
             </p>
             <Button onClick={openMaps} variant="blessing" className="text-xs sm:text-sm">
@@ -199,18 +230,34 @@ const MainPage = () => {
             </Button>
           </div>
 
-          {/* Blessing Message */}
+          {/* Host Information */}
           <div className="mb-4 sm:mb-6">
-            <p className={`text-base sm:text-lg md:text-xl font-bold text-sacred-gold mb-2`}>
+            <h3 className={`text-base sm:text-lg font-bold text-sacred-gold mb-2 text-center`}>
+              {t('invitation.hosted_by')}
+            </h3>
+            <p className={`text-sm sm:text-base text-sacred-yellow text-center`}>
+              {t('invitation.regards')}
+            </p>
+          </div>
+
+          {/* Blessing Messages */}
+          <div className="mb-4 sm:mb-6 space-y-3">
+            <p className={`text-sm sm:text-base text-sacred-gold text-center leading-relaxed`}>
               {t('invitation.blessing_text')}
+            </p>
+            <p className={`text-sm sm:text-base text-sacred-yellow text-center leading-relaxed`}>
+              {t('invitation.presence_blessing')}
             </p>
             <div className="w-16 sm:w-20 h-1 golden-gradient mx-auto rounded-full"></div>
           </div>
 
-          {/* Family Signature */}
+          {/* Contact Information */}
           <div className="mb-4 sm:mb-6">
-            <p className={`text-sm sm:text-base text-sacred-yellow italic`}>
-              {t('invitation.regards')}
+            <p className={`text-sm sm:text-base text-sacred-yellow text-center mb-2`}>
+              {t('invitation.contact')}
+            </p>
+            <p className={`text-sm sm:text-base text-sacred-gold text-center font-semibold`}>
+              {t('invitation.gratitude')}
             </p>
           </div>
 

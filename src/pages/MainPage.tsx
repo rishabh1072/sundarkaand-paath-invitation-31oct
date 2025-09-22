@@ -156,7 +156,7 @@ const MainPage = () => {
             </div>
 
             {/* Stronger Semi-transparent Red Overlay Layer */}
-            <div className="fixed inset-0 w-full h-full z-10 pointer-events-none" style={{ background: 'rgba(185,28,28,0.5)' }} />
+            <div className="fixed inset-0 w-full h-full z-10 pointer-events-none" style={{ background: 'rgba(185,28,28,0.7)' }} />
 
             {/* Foreground Content */}
             <LanguageToggle />
@@ -334,3 +334,4 @@ const MainPage = () => {
 };
 
 export default MainPage;
+

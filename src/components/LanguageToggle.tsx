@@ -5,6 +5,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const LanguageToggle = () => {
   const { language, toggleLanguage } = useLanguage();
 
+  // Always use the English label width for button sizing
+  const buttonLabel = language === 'english' ? 'हिंदी' : 'English';
+  // Set a min-width based on the English label
+  const minWidth = '56px'; // 'English' is 7 chars, ~56px at text-xs font
+
   return (
     <Button
       onClick={toggleLanguage}
@@ -18,10 +23,11 @@ const LanguageToggle = () => {
         focus:ring-1 focus:ring-red-700 focus:outline-none
       "
       style={{
+        minWidth,
         boxShadow: '0 0 0 1px rgba(185,28,28,0.1)',
       }}
     >
-      {language === 'english' ? 'हिंदी' : 'English'}
+      {buttonLabel}
     </Button>
   );
 };

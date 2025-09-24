@@ -11,7 +11,7 @@ interface LanguageContextType {
 const translations = {
   hindi: {
     // Welcome Page - Header Section
-    'welcome.invocation': '|| ॐ श्री हनुमते नमः ||',
+    // 'welcome.invocation': '|| ॐ श्री हनुमते नमः ||',
     'welcome.title': 'सुन्दरकाण्ड पाठ',
     'welcome.subtitle': 'सादर आमंत्रण',
     'welcome.blessing_title': '|| जय श्री राम ||',
@@ -50,7 +50,7 @@ const translations = {
   },
   english: {
     // Welcome Page - Header Section
-    'welcome.invocation': '|| Om Shri Hanumate Namah ||',
+    // 'welcome.invocation': '|| Om Shri Hanumate Namah ||',
     'welcome.title': 'Sundarkaand Paath',
     'welcome.subtitle': 'Cordial Invitation',
     'welcome.blessing_title': '|| Jai Shri Ram ||',

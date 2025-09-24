@@ -179,15 +179,29 @@ const MainPage = () => {
 
                 {/* Welcome Page Content */}
                 <div className="flex flex-col items-center justify-start text-center w-full min-h-0">
-                    {/* Invocation - Header Section */}
-                    <div className="mb-2 sm:mb-4">
-                        <h1 className={`text-lg sm:text-2xl md:text-3xl font-bold text-sacred-gold mb-2 text-center`}>
-                            {t('welcome.invocation')}
-                        </h1>
-                    </div>
-
                     {/* Main Title - Properly Centered */}
-                    <div className="mb-4 sm:mb-6 animate-divine-pulse w-full flex flex-col items-center max-w-sm mx-auto">
+                    {/* Bells and Chant - Replace standalone mantra with bell-mantra-bell */}
+                    <div className="flex flex-row items-center justify-center mb-2 select-none">
+                        <span
+                            className="text-sacred-gold drop-shadow-lg animate-bell-sway-left flex items-center justify-center"
+                            style={{ filter: 'brightness(1.2)', fontSize: '1.125rem', width: '1.125rem', height: '1.125rem' }}
+                        >
+                            🔔
+                        </span>
+                        <span
+                            className="text-sacred-gold font-bold tracking-wide whitespace-nowrap flex items-center justify-center mx-1"
+                            style={{ fontSize: '1.125rem', lineHeight: '1.125rem', height: '1.125rem' }}
+                        >
+                            || ॐ श्री हनुमते नमः ||
+                        </span>
+                        <span
+                            className="text-sacred-gold drop-shadow-lg animate-bell-sway-right flex items-center justify-center"
+                            style={{ filter: 'brightness(1.2)', fontSize: '1.125rem', width: '1.125rem', height: '1.125rem' }}
+                        >
+                            🔔
+                        </span>
+                    </div>
+                    <div className="mb-4 sm:mb-6 animate-divine-pulse w-full flex flex-col items-center max-w-lg mx-auto px-4 sm:px-8">
                         <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold temple-text mb-3 text-center leading-tight">
                             {t('welcome.title')}
                         </h1>
@@ -337,6 +351,28 @@ const MainPage = () => {
                 onAccept={handleAudioAccept}
                 onDecline={handleAudioDecline}
             />
+
+            {/*/!* Small Bells and Chant - Footer or below main content *!/*/}
+            {/*<div className="w-full flex flex-row items-center justify-center mt-8 mb-2 select-none">*/}
+            {/*  <span*/}
+            {/*    className="text-sacred-gold flex items-center justify-center"*/}
+            {/*    style={{ fontSize: '1rem', width: '1rem', height: '1rem' }}*/}
+            {/*  >*/}
+            {/*    🔔*/}
+            {/*  </span>*/}
+            {/*  <span*/}
+            {/*    className="text-sacred-gold font-bold tracking-wide whitespace-nowrap flex items-center justify-center mx-1"*/}
+            {/*    style={{ fontSize: '1rem', lineHeight: '1rem', height: '1rem' }}*/}
+            {/*  >*/}
+            {/*    || ॐ श्री हनुमते नमः ||*/}
+            {/*  </span>*/}
+            {/*  <span*/}
+            {/*    className="text-sacred-gold flex items-center justify-center"*/}
+            {/*    style={{ fontSize: '1rem', width: '1rem', height: '1rem' }}*/}
+            {/*  >*/}
+            {/*    🔔*/}
+            {/*  </span>*/}
+            {/*</div>*/}
         </div>
     );
 };

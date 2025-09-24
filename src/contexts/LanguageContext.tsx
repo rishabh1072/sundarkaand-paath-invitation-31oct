@@ -32,21 +32,21 @@ const translations = {
 
     // Venue Information
     'invitation.venue': 'स्थान',
-    'invitation.address': 'श्री हनुमान मंदिर\n123 मुख्य मार्ग\nदिल्ली - 110001',
+    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी, रूसा मेडिकल सेंटर के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
 
     // Contact Section
     'invitation.hosted_by': 'निमंत्रक',
     'invitation.blessing_text': 'कृपया इस निमंत्रण को स्वीकार कर हमारी खुशियों में शामिल होकर हमें धन्य करें',
     'invitation.presence_blessing': 'आपकी उपस्थिति से कार्यक्रम को पुण्य प्राप्त होगा',
-    'invitation.regards': 'सादर - [परिवार का नाम] परिवार',
-    'invitation.contact': 'संपर्क: +91 98765 43210',
+    'invitation.regards': 'सादर - अग्रवाल परिवार',
+    'invitation.contact': 'संपर्क: +91 9837046876, +91 9568991163',
     'invitation.gratitude': 'धन्यवाद',
 
     // Common
     'nav.home': 'मुख्य पृष्ठ',
     'nav.invitation': 'निमंत्रण',
     'share.whatsapp': 'व्हाट्सऐप पर साझा करें',
-    'directions': 'दिशा-निर्देश',
+    'directions': 'Get Directions',
   },
   english: {
     // Welcome Page - Header Section
@@ -71,14 +71,14 @@ const translations = {
 
     // Venue Information
     'invitation.venue': 'Venue',
-    'invitation.address': 'Shri Hanuman Temple\n123 Main Road\nDelhi - 110001',
+    'invitation.address': 'House No. 9, Sai Vatika Colony, Opposite Rusa Medical Centre, Agra Road, Aligarh, Uttar Pradesh - 202001',
 
     // Contact Section
     'invitation.hosted_by': 'Hosted By',
     'invitation.blessing_text': 'We seek your blessings and gracious presence to make this sacred occasion more meaningful',
     'invitation.presence_blessing': 'Your presence will add sanctity to our prayers',
-    'invitation.regards': 'The [Family Name] Family',
-    'invitation.contact': 'Contact: +91 98765 43210',
+    'invitation.regards': 'The Agrawal Family',
+    'invitation.contact': 'Contact: +91 9837046876, +91 9568991163',
     'invitation.gratitude': 'Thank you',
 
     // Common

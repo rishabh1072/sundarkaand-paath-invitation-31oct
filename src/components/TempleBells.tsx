@@ -2,7 +2,7 @@ import React from 'react';
 
 const TempleBells: React.FC = () => {
   return (
-    <div className="absolute inset-0 pointer-events-none z-1 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-30 overflow-hidden">
       {/* Red background layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-sacred-red/40 via-red-500/30 to-sacred-red/60 pointer-events-none -z-10"></div>
 
@@ -21,7 +21,7 @@ const TempleBells: React.FC = () => {
       </div>
 
       {/* Temple Bell 3 - Bottom Left Corner */}
-      <div className="absolute bottom-20 left-8 animate-bell-sway-3">
+      <div className="absolute bottom-0 left-0 m-4 animate-bell-sway-3">
         <div className="text-sacred-gold text-[3rem] drop-shadow-lg" style={{ filter: 'brightness(1.2)' }}>
           🔔
         </div>

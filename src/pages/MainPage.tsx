@@ -65,7 +65,7 @@ const MainPage = () => {
     };
 
     const openMaps = () => {
-        const coordinates = "28.6139,77.2090";
+        const coordinates = "27.853529847392654, 78.07953158817394";
         window.open(`https://maps.google.com?q=${coordinates}`, '_blank');
     };
 
@@ -75,8 +75,14 @@ const MainPage = () => {
             const imagePromises = backgroundImages.map((src) => {
                 return new Promise((resolve, reject) => {
                     const img = new Image();
-                    img.onload = resolve;
-                    img.onerror = reject;
+                    img.onload = () => {
+                        console.log('Successfully loaded image:', src);
+                        resolve(src);
+                    };
+                    img.onerror = (error) => {
+                        console.error('Failed to load image:', src, error);
+                        reject(error);
+                    };
                     img.src = src;
                 });
             });
@@ -87,7 +93,8 @@ const MainPage = () => {
                 console.log('All background images preloaded successfully');
             } catch (error) {
                 console.error('Error preloading images:', error);
-                setImagesPreloaded(true); // Continue anyway
+                // Still set to true to show fallback background
+                setImagesPreloaded(true);
             }
         };
 
@@ -98,60 +105,64 @@ const MainPage = () => {
     useEffect(() => {
         if (!imagesPreloaded) return;
 
-        const intervalId = setInterval(() => {
-            // Start transition
-            setIsTransitioning(true);
+        let displayTimeout: NodeJS.Timeout;
+        let transitionTimeout: NodeJS.Timeout;
+        let isUnmounted = false;
 
-            // Set next image
-            setNextBgIdx(current => {
-                let next;
-                do {
-                    next = Math.floor(Math.random() * backgroundImages.length);
-                } while (next === currentBgIdx && backgroundImages.length > 1);
-                return next;
-            });
+        const startDisplayCycle = () => {
+            displayTimeout = setTimeout(() => {
+                setIsTransitioning(true);
+                transitionTimeout = setTimeout(() => {
+                    setCurrentBgIdx(nextBgIdx => {
+                        let next;
+                        do {
+                            next = Math.floor(Math.random() * backgroundImages.length);
+                        } while (next === currentBgIdx && backgroundImages.length > 1);
+                        return next;
+                    });
+                    setIsTransitioning(false);
+                    if (!isUnmounted) startDisplayCycle();
+                }, 1500); // Fade duration
+            }, 4000); // Full visible duration
+        };
 
-            // Complete transition after fade duration
-            setTimeout(() => {
-                setCurrentBgIdx(nextBgIdx);
-                setIsTransitioning(false);
-            }, 2000); // Match this with CSS transition duration
+        startDisplayCycle();
 
-        }, 7000); // Change image every 7 seconds
-
-        return () => clearInterval(intervalId);
-    }, [imagesPreloaded, currentBgIdx, nextBgIdx]);
+        return () => {
+            isUnmounted = true;
+            clearTimeout(displayTimeout);
+            clearTimeout(transitionTimeout);
+        };
+    }, [imagesPreloaded, currentBgIdx, backgroundImages.length]);
 
     return (
         <div className="relative min-h-screen w-full flex flex-col items-center overflow-hidden" style={{ backgroundColor: '#b91c1c' }}>
             {/* IMPROVED BACKGROUND IMAGE LAYERS */}
             <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
-                {imagesPreloaded && (
-                    <>
-                        {/* Current/Base Background Image */}
-                        <div
-                            className="absolute inset-0 w-full h-full transition-opacity duration-2000 ease-in-out"
-                            style={{
-                                backgroundImage: `url(${backgroundImages[currentBgIdx]})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                opacity: isTransitioning ? 0 : 1
-                            }}
-                        />
+                {/* Always show at least one background image even before preloading completes */}
+                <div
+                    className="absolute inset-0 w-full h-full"
+                    style={{
+                        backgroundImage: `url(${backgroundImages[currentBgIdx]})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        opacity: imagesPreloaded ? (isTransitioning ? 0 : 1) : 1
+                    }}
+                />
 
-                        {/* Next/Transitioning Background Image */}
-                        <div
-                            className="absolute inset-0 w-full h-full transition-opacity duration-2000 ease-in-out"
-                            style={{
-                                backgroundImage: `url(${backgroundImages[nextBgIdx]})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                opacity: isTransitioning ? 1 : 0
-                            }}
-                        />
-                    </>
+                {/* Next/Transitioning Background Image - only show when preloaded and transitioning */}
+                {imagesPreloaded && isTransitioning && (
+                    <div
+                        className="absolute inset-0 w-full h-full transition-opacity duration-1500 ease-in-out"
+                        style={{
+                            backgroundImage: `url(${backgroundImages[nextBgIdx]})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                            opacity: 1
+                        }}
+                    />
                 )}
             </div>
 
@@ -176,8 +187,8 @@ const MainPage = () => {
                     </div>
 
                     {/* Main Title - Properly Centered */}
-                    <div className="mb-4 sm:mb-6 animate-divine-pulse w-full flex flex-col items-center">
-                        <h1 className={`text-3xl sm:text-5xl md:text-7xl font-bold temple-text mb-3 text-center leading-tight`}>
+                    <div className="mb-4 sm:mb-6 animate-divine-pulse w-full flex flex-col items-center max-w-sm mx-auto">
+                        <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold temple-text mb-3 text-center leading-tight">
                             {t('welcome.title')}
                         </h1>
                         <div className="w-20 sm:w-28 h-1 golden-gradient mx-auto rounded-full animate-sacred-float"></div>

@@ -109,7 +109,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioEnabled = false }) => {
       />
 
       {/* Audio controls - Bottom left */}
-      <div className="fixed bottom-4 left-4 z-40 flex items-center gap-2">
+      <div className="fixed bottom-20 left-4 z-40 flex items-center gap-2">
         <div className="bg-sacred-red/80 backdrop-blur-sm rounded-full p-3 border-2 border-sacred-gold/50 shadow-lg">
           <button
             onClick={togglePlayPause}

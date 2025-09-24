@@ -10,7 +10,7 @@ const LanguageToggle = () => {
       onClick={toggleLanguage}
       variant="outline"
       size="sm"
-      className="fixed top-20 right-4 md:right-[calc(50vw-8rem)] z-50
+      className="fixed top-4 right-4 z-50
         bg-yellow-400/90 text-red-900 border border-red-700 shadow-md
         font-medium transition-all duration-300
         px-2 py-1 text-xs rounded-md
@@ -21,7 +21,7 @@ const LanguageToggle = () => {
         boxShadow: '0 0 0 1px rgba(185,28,28,0.1)',
       }}
     >
-      {language === 'english' ? 'हिंदी' : 'EN'}
+      {language === 'english' ? 'हिंदी' : 'English'}
     </Button>
   );
 };

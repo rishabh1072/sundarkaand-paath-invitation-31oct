@@ -122,8 +122,8 @@ const MainPage = () => {
                     });
                     setIsTransitioning(false);
                     if (!isUnmounted) startDisplayCycle();
-                }, 1500); // Fade duration
-            }, 4000); // Full visible duration
+                }, 3000); // Fade duration changed to 2 seconds
+            }, 3000); // Full visible duration
         };
 
         startDisplayCycle();

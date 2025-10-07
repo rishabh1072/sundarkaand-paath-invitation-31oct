@@ -256,9 +256,6 @@ const MainPage = () => {
                             {t('invitation.title')}
                         </h1>
                         <div className="w-16 sm:w-20 h-1 golden-gradient mx-auto rounded-full mb-4"></div>
-                        <h2 className={`text-lg sm:text-xl md:text-2xl font-semibold text-sacred-gold text-center`}>
-                            {t('invitation.subtitle')}
-                        </h2>
                     </div>
 
                     {/* Date Section */}

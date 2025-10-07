@@ -24,7 +24,7 @@ const translations = {
     // Invitation Page - Event Details
     'invitation.title': 'सुन्दरकाण्ड पाठ',
     'invitation.subtitle': 'कार्यक्रम विवरण',
-    'invitation.date': 'दिनांक: सोमवार, 1 अप्रैल 2024',
+    'invitation.date': 'दिनांक: शुक्रवार, 31 अक्टूबर 2025',
     'invitation.puja': 'पाठ आरंभ: सुबह 8:30 बजे',
     'invitation.aarti': 'आरती: सुबह 10:00 बजे',
     'invitation.prasad': 'प्रसाद वितरण: सुबह 10:30 बजे से',
@@ -63,7 +63,7 @@ const translations = {
     // Invitation Page - Event Details
     'invitation.title': 'Sundarkaand Paath',
     'invitation.subtitle': 'Program Schedule',
-    'invitation.date': 'Date: Monday, 1st April 2024',
+    'invitation.date': 'Date: Friday, 31st October 2025',
     'invitation.puja': 'Paath begins: 8:30 AM',
     'invitation.aarti': 'Aarti: 10:00 AM',
     'invitation.prasad': 'Prasad distribution: 10:30 AM onwards',

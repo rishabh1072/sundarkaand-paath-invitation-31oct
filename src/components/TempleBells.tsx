@@ -6,22 +6,10 @@ const TempleBells: React.FC = () => {
   return (
     <div className="w-full flex flex-row items-center justify-center mt-4 mb-2 select-none">
       <span
-        className="text-sacred-gold drop-shadow-lg animate-bell-sway-left flex items-center justify-center"
-        style={{ filter: 'brightness(1.2)', fontSize: bellSize, width: bellSize, height: bellSize }}
-      >
-        🔔
-      </span>
-      <span
         className="text-sacred-gold font-bold tracking-wide whitespace-nowrap flex items-center justify-center mx-1"
         style={{ fontSize: bellSize, lineHeight: bellSize, height: bellSize }}
       >
         || ॐ श्री हनुमते नमः ||
-      </span>
-      <span
-        className="text-sacred-gold drop-shadow-lg animate-bell-sway-right flex items-center justify-center"
-        style={{ filter: 'brightness(1.2)', fontSize: bellSize, width: bellSize, height: bellSize }}
-      >
-        🔔
       </span>
       <style>{`
         @keyframes bell-sway-left {

@@ -13,7 +13,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioEnabled = false }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Use correct base path for audio files
-  const basePath = process.env.NODE_ENV === 'production' ? '/hanuman-aashirwad-site' : '';
+  const basePath = process.env.NODE_ENV === 'production' ? '/sundarkaand-paath-invitation-31oct' : '';
   // Memoize audio files array to prevent dependency changes
   const audioFiles = useMemo(() => [
     `${basePath}/audios/Bajrang_Baan.mp3`,

@@ -118,12 +118,25 @@ const MainPage = () => {
             displayTimeout = setTimeout(() => {
                 setIsTransitioning(true);
 
-                // Generate next background index before transition
+                // Generate next background index before transition - FIXED RANDOMIZATION
                 const nextIdx = (() => {
                     let next;
+                    let attempts = 0;
+                    const maxAttempts = 10; // Prevent infinite loop
+
                     do {
                         next = Math.floor(Math.random() * backgroundImages.length);
-                    } while (next === currentBgIdx && backgroundImages.length > 1);
+                        attempts++;
+                        console.log(`Random selection attempt ${attempts}: selected index ${next}, current index ${currentBgIdx}`);
+                    } while (next === currentBgIdx && backgroundImages.length > 1 && attempts < maxAttempts);
+
+                    // If we couldn't find a different index after max attempts, just increment
+                    if (attempts >= maxAttempts) {
+                        next = (currentBgIdx + 1) % backgroundImages.length;
+                        console.log(`Fallback: using incremented index ${next}`);
+                    }
+
+                    console.log(`Final selected background index: ${next} (${backgroundImages[next]})`);
                     return next;
                 })();
                 setNextBgIdx(nextIdx);

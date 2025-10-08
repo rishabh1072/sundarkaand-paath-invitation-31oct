@@ -24,7 +24,7 @@ const ScrollingMantra: React.FC = () => {
             animationDelay: `${i * DELAY_BETWEEN}s`,
           }}
         >
-          <div className={`text-sacred-gold/30 text-5xl sm:text-7xl md:text-[8rem] font-extrabold hindi-text whitespace-nowrap text-center drop-shadow-[0_2px_8px_rgba(185,28,28,0.25)] max-w-[90vw] overflow-hidden text-ellipsis`}>
+          <div className={`text-sacred-gold/30 text-4xl sm:text-5xl md:text-[5.6rem] font-extrabold hindi-text whitespace-nowrap text-center drop-shadow-[0_2px_8px_rgba(185,28,28,0.25)] max-w-[90vw] overflow-hidden text-ellipsis`}>
             {mantra}
           </div>
         </div>

@@ -36,13 +36,13 @@ const MainPage = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [imagesPreloaded, setImagesPreloaded] = useState(false);
 
-    // Auto-scroll from main to invitation section after 10s (only once)
+    // Auto-scroll from main to invitation section after 5s (only once)
     useEffect(() => {
         if (!mainAutoScrolled) {
             const timer = setTimeout(() => {
                 invitationSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
                 setMainAutoScrolled(true);
-            }, 10000);
+            }, 5000); // Changed from 10000 to 5000 (5 seconds)
             return () => clearTimeout(timer);
         }
     }, [mainAutoScrolled]);
@@ -61,7 +61,7 @@ const MainPage = () => {
         let message;
         if (t('nav.home') === 'मुख्य पृष्ठ') {
             // Hindi message
-            message = `॥ श्री हनुमते नमः ॥\n\nईश्वर की असीम अनुकम्पा से  \nहमारे निवास स्थान पर  \n*सुंदरकाण्ड पाठ*  \nका आयोजन किया जा रहा है।\n\nइस शुभ अवसर पर आप सपरिवार सादर आमंत्रित हैं।  \nकृपया पधारकर हमें कृतार्थ करें एवं हनुमान जी के आशीर्वाद के सहभागी बनें। 🙏🏻\n\n🗓️ *दिनांक:* शुक्रवार, 31 अक्टूबर 2025  \n🕣 *पाठ प्रारंभ:* प्रातः 8:30 बजे  \n🕉️ *आरती:* प्रातः 10:00 बजे  \n🍛 *प्रसाद वितरण:* 10:30 बजे से  \n🍽️ *भोजन (सामूहिक रात्रिभोज):* सायं 6:00 बजे से  \n\n📍 *स्थान:*  \nहाउस नं. 9, साई वाटिका कॉलोनी,  \nरूसा मेडिकल सेंटर के सामने,  \nआगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001  \n\n🌐 *विस्तृत जानकारी हेतु देखें:*  \n👉 https://tinyurl.com/invitation-31oct\n\n🙏🏻 *आपकी उपस्थिति हमारे लिए परम सौभाग्य की बात होगी।*  \n\nसादर,  \n*अग्रवाल परिवार*  \n📞 +91 9837046876 | +91 9568991163`;
+            message = `॥ श्री हनुमते नमः ॥\n\nईश्वर की असीम अनुकम्पा से  \nहमारे निवास स्थान पर  \n*सुंदरकाण्ड पाठ*  \nका आयोजन किया जा रहा है।\n\nइस शुभ अवसर पर आप सपरिवार सादर आमंत्रित हैं।  \nकृपया पधारकर हमें कृतार्थ करें एवं हनुमान जी के आशीर्वाद के सहभागी बनें। 🙏🏻\n\n🗓️ *दिनांक:* शुक्रवार, 31 अक्टूबर 2025  \n🕣 *पाठ प्रार��भ:* प्रातः 8:30 बजे  \n🕉️ *आरती:* प्रातः 10:00 बजे  \n🍛 *प्रसाद वितरण:* 10:30 बजे से  \n🍽️ *भोजन (सामूहिक रात्रिभोज):* सायं 6:00 बजे से  \n\n📍 *स्थान:*  \nहाउस नं. 9, साई वाटिका कॉलोनी,  \nरूसा मेडिकल सेंटर के सामने,  \nआगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001  \n\n🌐 *विस्तृत जानकारी हेतु देखें:*  \n👉 https://tinyurl.com/invitation-31oct\n\n🙏🏻 *आपकी उपस्थिति हमारे लिए परम सौभाग्य की बात होगी।*  \n\nसादर,  \n*अग्रवाल परिवार*  \n📞 +91 9837046876 | +91 9568991163`;
         } else {
             // English message
             message = `॥ Shri Hanumate Namah ॥\n\nWith the divine grace of the Almighty,  \nwe are organizing a sacred *Sundarkaand Paath*  \nat our residence.\n\nOn this auspicious occasion,  \nyou and your family are cordially invited  \nto join us and seek the blessings of Lord Hanuman. 🙏🏻\n\n🗓️ *Date:* Friday, 31st October 2025  \n🕣 *Paath begins:* 8:30 AM  \n🕉️ *Aarti:* 10:00 AM  \n🍛 *Prasad distribution:* from 10:30 AM onwards  \n🍽️ *Community Dinner:* from 6:00 PM onwards  \n\n📍 *Venue:*  \nHouse No. 9, Sai Vatika Colony,  \nOpposite Rusa Medical Centre,  \nAgra Road, Aligarh, Uttar Pradesh - 202001  \n\n🌐 *For complete details and directions:*  \n👉 https://tinyurl.com/invitation-31oct\n\n🙏🏻 Your presence will be a blessing to us on this sacred day.  \n\nWith regards,  \n*The Agrawal Family*  \n📞 +91 9837046876 | +91 9568991163`;
@@ -117,18 +117,23 @@ const MainPage = () => {
         const startDisplayCycle = () => {
             displayTimeout = setTimeout(() => {
                 setIsTransitioning(true);
+
+                // Generate next background index before transition
+                const nextIdx = (() => {
+                    let next;
+                    do {
+                        next = Math.floor(Math.random() * backgroundImages.length);
+                    } while (next === currentBgIdx && backgroundImages.length > 1);
+                    return next;
+                })();
+                setNextBgIdx(nextIdx);
+
                 transitionTimeout = setTimeout(() => {
-                    setCurrentBgIdx(nextBgIdx => {
-                        let next;
-                        do {
-                            next = Math.floor(Math.random() * backgroundImages.length);
-                        } while (next === currentBgIdx && backgroundImages.length > 1);
-                        return next;
-                    });
+                    setCurrentBgIdx(nextIdx);
                     setIsTransitioning(false);
                     if (!isUnmounted) startDisplayCycle();
-                }, 3000); // Fade duration changed to 2 seconds
-            }, 3000); // Full visible duration
+                }, 2500); // Increased transition duration for smoother effect
+            }, 5000); // Increased display duration by 2 seconds (from 3000 to 5000)
         };
 
         startDisplayCycle();
@@ -138,7 +143,7 @@ const MainPage = () => {
             clearTimeout(displayTimeout);
             clearTimeout(transitionTimeout);
         };
-    }, [imagesPreloaded, currentBgIdx, backgroundImages.length]);
+    }, [imagesPreloaded, currentBgIdx]);
 
     return (
         <div className="relative min-h-screen w-full flex flex-col items-center overflow-hidden" style={{ backgroundColor: '#b91c1c' }}>
@@ -146,7 +151,7 @@ const MainPage = () => {
             <div className="fixed inset-0 w-full h-full z-0 pointer-events-none">
                 {/* Always show at least one background image even before preloading completes */}
                 <div
-                    className="absolute inset-0 w-full h-full"
+                    className="absolute inset-0 w-full h-full animate-subtle-zoom"
                     style={{
                         backgroundImage: `url(${backgroundImages[currentBgIdx]})`,
                         backgroundSize: 'cover',
@@ -159,7 +164,7 @@ const MainPage = () => {
                 {/* Next/Transitioning Background Image - only show when preloaded and transitioning */}
                 {imagesPreloaded && isTransitioning && (
                     <div
-                        className="absolute inset-0 w-full h-full transition-opacity duration-1500 ease-in-out"
+                        className="absolute inset-0 w-full h-full transition-opacity duration-[2500ms] ease-in-out animate-subtle-zoom"
                         style={{
                             backgroundImage: `url(${backgroundImages[nextBgIdx]})`,
                             backgroundSize: 'cover',

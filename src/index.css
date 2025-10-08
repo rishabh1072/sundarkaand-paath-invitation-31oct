@@ -193,6 +193,10 @@
   .animate-blessing-rotate {
     animation: blessing-rotate 20s linear infinite;
   }
+
+  .animate-subtle-zoom {
+    animation: subtle-zoom 12s ease-in-out infinite;
+  }
 }
 
 @keyframes divine-pulse {
@@ -219,6 +223,18 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes subtle-zoom {
+  0% {
+    transform: scale(1.0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.0);
   }
 }
 

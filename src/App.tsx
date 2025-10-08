@@ -15,7 +15,7 @@ const App = () => (
       <LanguageProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/hanuman-aashirwad-site' : ''}>
+        <BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/sundarkaand-paath-invitation-31oct' : ''}>
           <Routes>
             <Route path="/" element={<MainPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

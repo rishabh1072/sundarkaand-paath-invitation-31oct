@@ -14,7 +14,6 @@ import bg5 from '@/assets/background/bg-5.png';
 import bg6 from '@/assets/background/bg-6.png';
 import ramDarbarBg from '@/assets/background/ram-darbar-bg.png';
 import hanumanPortrait from '@/assets/hanuman-meditation.png';
-import decorativeBorder from '@/assets/decorative-border.jpg';
 import AudioConsentModal from '@/components/AudioConsentModal';
 
 const backgroundImages = [bg2, bg3, bg4, bg5, bg6, ramDarbarBg];
@@ -24,7 +23,6 @@ const MainPage = () => {
     const mainSectionRef = useRef<HTMLDivElement>(null);
     const invitationSectionRef = useRef<HTMLDivElement>(null);
     const [mainAutoScrolled, setMainAutoScrolled] = useState(false);
-    const [invitationAutoScrolled, setInvitationAutoScrolled] = useState(false);
 
     // Audio consent state
     const [showAudioConsent, setShowAudioConsent] = useState(true);
@@ -193,8 +191,30 @@ const MainPage = () => {
             {/* Stronger Semi-transparent Red Overlay Layer */}
             <div className="fixed inset-0 w-full h-full z-10 pointer-events-none" style={{ background: 'rgba(185,28,28,0.7)' }} />
 
-            {/* Foreground Content */}
-            <LanguageToggle />
+            {/* Top Header - Non-floating with Jai Shree Ram centered and Language Toggle on right, now with bells */}
+            <div className="relative w-full flex items-center justify-center px-4 pt-4 pb-2 z-20">
+                <div className="flex-1 flex flex-row items-center justify-center">
+                    <span
+                        className="text-sacred-gold drop-shadow-lg animate-bell-sway-left flex items-center justify-center"
+                        style={{ filter: 'brightness(1.2)', fontSize: '1.125rem', width: '1.125rem', height: '1.125rem' }}
+                    >
+                        🔔
+                    </span>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-sacred-gold text-center mx-2">
+                        {t('welcome.blessing_title')}
+                    </h3>
+                    <span
+                        className="text-sacred-gold drop-shadow-lg animate-bell-sway-right flex items-center justify-center"
+                        style={{ filter: 'brightness(1.2)', fontSize: '1.125rem', width: '1.125rem', height: '1.125rem' }}
+                    >
+                        🔔
+                    </span>
+                </div>
+                <div className="absolute right-4 top-4">
+                    <LanguageToggle />
+                </div>
+            </div>
+
             <AudioPlayer audioEnabled={audioEnabled} />
             <TempleBells />
             <div ref={mainSectionRef} className="w-full max-w-3xl mx-auto py-12 px-4 z-10">
@@ -248,13 +268,6 @@ const MainPage = () => {
                             className="relative w-32 h-32 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover rounded-full border-4 sm:border-8 border-yellow-400 shadow-2xl group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 rounded-full bg-gradient-to-b from-transparent to-sacred-red/20"></div>
-                    </div>
-
-                    {/* Blessing Title */}
-                    <div className="mb-4 sm:mb-6">
-                        <h3 className={`text-lg sm:text-2xl md:text-3xl font-bold text-sacred-gold text-center`}>
-                            {t('welcome.blessing_title')}
-                        </h3>
                     </div>
 
                     {/* Blessing Text */}

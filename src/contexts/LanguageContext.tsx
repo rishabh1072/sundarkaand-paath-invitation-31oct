@@ -16,6 +16,7 @@ const translations = {
     'welcome.subtitle': 'सादर आमंत्रण',
     'welcome.blessing_title': '|| जय श्री राम ||',
     'welcome.chalisa': 'परमपिता परमात्मा की असीम अनुकम्पा से हमारे निवास स्थान पर सुंदरकांड पाठ का आयोजन किया जा रहा है। इस शुभ अवसर पर आप सादर आमंत्रित हैं। कृपया परिवार सहित पधार कर हमें अनुग्रहित करें।',
+    'welcome.invocation': '|| ॐ श्री हनुमते नमः ||',
 
     // Host Information
     'host.family': '',
@@ -25,7 +26,7 @@ const translations = {
     'invitation.title': 'सुन्दरकाण्ड पाठ',
     'invitation.subtitle': 'कार्यक्रम विवरण',
     'invitation.date': 'दिनांक: शुक्रवार, 31 अक्टूबर 2025',
-    'invitation.puja': 'पाठ आरंभ: दोपहर 2:00 बजे',
+    'invitation.puja': '��ाठ आरंभ: दोपहर 2:00 बजे',
     'invitation.aarti': 'आरती: सायं 6:00 बजे',
     'invitation.prasad': 'प्रसाद वितरण: सायं 6:30 बजे से',
 
@@ -54,6 +55,7 @@ const translations = {
     'welcome.subtitle': 'Cordial Invitation',
     'welcome.blessing_title': '|| Jai Shri Ram ||',
     'welcome.chalisa': 'By the immense grace of the Supreme Lord, a Sundarkand recital is being organized at our residence. You are cordially invited to join us on this auspicious occasion with your family. Please honor us with your presence.',
+    'welcome.invocation': '|| Om Shri Hanumate Namah ||',
 
     // Host Information
     'host.family': '',

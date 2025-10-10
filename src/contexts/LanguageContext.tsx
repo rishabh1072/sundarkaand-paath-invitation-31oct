@@ -27,8 +27,8 @@ const translations = {
     'invitation.subtitle': 'कार्यक्रम विवरण',
     'invitation.date': 'दिनांक: शुक्रवार, 31 अक्टूबर 2025',
     'invitation.puja': 'पाठ आरंभ: दोपहर 2:00 बजे',
-    'invitation.aarti': 'आरती: सायं 6:00 बजे',
-    'invitation.prasad': 'प्रसाद वितरण: सायं 6:30 बजे से',
+    'invitation.aarti': 'आरती: सांय 6:00 बजे',
+    'invitation.prasad': 'प्रसाद: सांय 6:30 बजे से',
 
     // Venue Information
     'invitation.venue': 'स्थान',

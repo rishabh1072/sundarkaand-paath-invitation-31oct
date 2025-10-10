@@ -197,6 +197,10 @@
   .animate-subtle-zoom {
     animation: subtle-zoom 12s ease-in-out infinite;
   }
+
+  .animate-subtle-zoom-fast {
+    animation: subtle-zoom-fast 9.6s cubic-bezier(0.4, 0.0, 0.6, 1.0) infinite;
+  }
 }
 
 @keyframes divine-pulse {
@@ -227,6 +231,18 @@
 }
 
 @keyframes subtle-zoom {
+  0% {
+    transform: scale(1.0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}
+
+@keyframes subtle-zoom-fast {
   0% {
     transform: scale(1.0);
   }

@@ -26,19 +26,19 @@ const translations = {
     'invitation.title': 'सुन्दरकाण्ड पाठ',
     'invitation.subtitle': 'कार्यक्रम विवरण',
     'invitation.date': 'दिनांक: शुक्रवार, 31 अक्टूबर 2025',
-    'invitation.puja': 'पाठ आरंभ: दोपहर 2:00 बजे',
+    'invitation.puja': 'पाठ आरंभ: दोपहर 1:00 बजे',
     'invitation.aarti': 'आरती: सांय 6:00 बजे',
     'invitation.prasad': 'प्रसाद: सांय 6:30 बजे से',
 
     // Venue Information
     'invitation.venue': 'स्थान',
-    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी फेज-1, रूसा मेडिकल सेंटर के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
+    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी फेज-1, शेखर सार्राफ मेमोरियल अस्पताल(रूसा) मेडिकल सेंटर के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
 
     // Contact Section
-    'invitation.hosted_by': 'निमंत्रक',
+    'invitation.hosted_by': 'निवेदक',
     'invitation.blessing_text': 'कृपया इस निमंत्रण को स्वीकार कर हमारी खुशियों में शामिल होकर हमें धन्य करें',
     'invitation.presence_blessing': 'आपकी उपस्थिति से कार्यक्रम को पुण्य प्राप्त होगा',
-    'invitation.regards': 'सादर - अग्रवाल परिवार',
+    'invitation.regards': 'सादर - श्री विनोद कुमार अग्रवाल, श्रीमती सीमा अग्रवाल',
     'invitation.contact': 'संपर्क: +91 9837046876, +91 7906518764',
     'invitation.gratitude': 'धन्यवाद',
 
@@ -65,19 +65,19 @@ const translations = {
     'invitation.title': 'Sundarkaand Paath',
     'invitation.subtitle': 'Program Schedule',
     'invitation.date': 'Date: Friday, 31st October 2025',
-    'invitation.puja': 'Paath begins: 2:00 PM',
+    'invitation.puja': 'Paath begins: 1:00 PM',
     'invitation.aarti': 'Aarti: 6:00 PM',
     'invitation.prasad': 'Prasad: 6:30 PM onwards',
 
     // Venue Information
     'invitation.venue': 'Venue',
-    'invitation.address': 'House No. 9, Sai Vatika Colony Phase-1, Opposite Rusa Medical Centre, Agra Road, Aligarh, Uttar Pradesh - 202001',
+    'invitation.address': 'House No. 9, Sai Vatika Colony Phase-1, Opposite Shekhar Sarraf Memorial Hospital(Rusa) Medical Centre, Agra Road, Aligarh, Uttar Pradesh - 202001',
 
     // Contact Section
     'invitation.hosted_by': 'Hosted By',
     'invitation.blessing_text': 'We seek your blessings and gracious presence to make this sacred occasion more meaningful',
     'invitation.presence_blessing': 'Your presence will add sanctity to our prayers',
-    'invitation.regards': 'The Agrawal Family',
+    'invitation.regards': 'Mr. Vinod Kumar Agrawal, Mrs. Seema Agrawal',
     'invitation.contact': 'Contact: +91 9837046876, +91 7906518764',
     'invitation.gratitude': 'Thank you',
 

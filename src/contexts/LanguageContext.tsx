@@ -32,7 +32,7 @@ const translations = {
 
     // Venue Information
     'invitation.venue': 'स्थान',
-    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी फेज-1, शेखर सार्राफ मेमोरियल अस्पताल(रूसा) के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
+    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी फेज-1, शेखर सर्राफ मेमोरियल अस्पताल(रूसा) के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
 
     // Contact Section
     'invitation.hosted_by': 'निवेदक',

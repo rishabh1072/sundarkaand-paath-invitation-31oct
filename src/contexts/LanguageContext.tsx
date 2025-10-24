@@ -32,7 +32,7 @@ const translations = {
 
     // Venue Information
     'invitation.venue': 'स्थान',
-    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी फेज-1, शेखर सार्राफ मेमोरियल अस्पताल(रूसा) मेडिकल सेंटर के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
+    'invitation.address': 'म.नं 9, साई वाटिका कॉलोनी फेज-1, शेखर सार्राफ मेमोरियल अस्पताल(रूसा) के सामने, आगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001',
 
     // Contact Section
     'invitation.hosted_by': 'निवेदक',
@@ -71,7 +71,7 @@ const translations = {
 
     // Venue Information
     'invitation.venue': 'Venue',
-    'invitation.address': 'House No. 9, Sai Vatika Colony Phase-1, Opposite Shekhar Sarraf Memorial Hospital(Rusa) Medical Centre, Agra Road, Aligarh, Uttar Pradesh - 202001',
+    'invitation.address': 'House No. 9, Sai Vatika Colony Phase-1, Opposite Shekhar Sarraf Memorial Hospital(Rusa), Agra Road, Aligarh, Uttar Pradesh - 202001',
 
     // Contact Section
     'invitation.hosted_by': 'Hosted By',

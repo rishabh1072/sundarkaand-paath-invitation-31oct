@@ -67,7 +67,7 @@ const translations = {
     'invitation.date': 'Date: Friday, 31st October 2025',
     'invitation.puja': 'Paath begins: 1:00 PM',
     'invitation.aarti': 'Aarti: 6:00 PM',
-    'invitation.prasad': 'Prasad: 6:30 PM onwards',
+    'invitation.prasad': 'Prasadi: 6:30 PM onwards',
 
     // Venue Information
     'invitation.venue': 'Venue',

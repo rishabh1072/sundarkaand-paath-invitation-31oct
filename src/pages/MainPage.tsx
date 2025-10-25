@@ -57,13 +57,13 @@ const MainPage = () => {
 
     const shareOnWhatsApp = () => {
         let message;
-        const mapsLink = 'https://www.google.com/maps?q=27.853781,78.080077';
+        const mapsLink = 'https://maps.app.goo.gl/?link=https://www.google.com/maps?q=27.853529847392654,78.07953158817394';
         if (t('nav.home') === 'मुख्य पृष्ठ') {
             // Hindi message
-            message = `॥ जय श्री राम ॥\n॥ श्री हनुमते नमः ॥\n\nईश्वर की असीम अनुकम्पा से  \nहमारे निवास स्थान पर  \n*सुंदरकाण्ड पाठ*  \nका आयोजन किया जा रहा है।\n\nइस शुभ अवसर पर आप सपरिवार सादर आमंत्रित हैं।  \nकृपया पधारकर हमें कृतार्थ करें एवं हनुमान जी के आशीर्वाद के सहभागी बनें। 🙏🏻\n\n🗓️ *दिनांक:* शुक्रवार, 31 अक्टूबर 2025  \n🕣 *पाठ प्रारंभ:* दोपहर 1:00 बजे  \n🕉️ *आरती:* सायं 6:00 बजे  \n🍛 *प्रसाद वितरण:* सायं 6:30 बजे से  \n\n📍 *स्थान:*  \nम.नं 9, साई वाटिका कॉलोनी फेज 1,  \nशेखर सर्राफ मेमोरियल अस्पताल(रूसा) के सामने,  \nआगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001  \n\n🗺️ *Google Map:*  \n👉 ${mapsLink}\n\n🌐 *विस्तृत जानकारी हेतु देखें:*  \n👉 https://tinyurl.com/invitation-31oct25\n\n🙏🏻 *आपकी उपस्थिति हमारे लिए परम सौभाग्य की बात होगी।*  \n\nसादर,  \n*श्री विनोद कुमार अग्रवाल, श्रीमती सीमा अग्रवाल*  \n📞 +91 9837046876 | +91 7906518764`;
+            message = `॥ जय श्री राम ॥\n॥ श्री हनुमते नमः ॥\n\nईश्वर की असीम अनुकम्पा से  \nहमारे निवास स्थान पर  \n*सुंदरकाण्ड पाठ*  \nका आयोजन किया जा रहा है।\n\nइस शुभ अवसर पर आप सपरिवार सादर आमंत्रित हैं।  \nकृपया पधारकर हमें कृतार्थ करें एवं हनुमान जी के आशीर्वाद के सहभागी बनें। 🙏🏻\n\n🗓️ *दिनांक:* शुक्रवार, 31 अक्टूबर 2025  \n🕣 *पाठ प्रारंभ:* दोपहर 2:00 बजे  \n🕉️ *आरती:* सांय 6:00 ��जे  \n🍛 *प्रसाद:* सांय 6:30 बजे से  \n\n📍 *स्थान:*  \nम.नं 9, साई वाटिका कॉलोनी फेज 1,  \nरूसा मेडिकल सेंटर के सामने,  \nआगरा रोड, अलीगढ़, उत्तर प्रदेश - 202001  \n\n🗺️ *Google Map:*  \n👉 ${mapsLink}\n\n🌐 *विस्तृत जानकारी हेतु देखें:*  \n�� https://tinyurl.com/invitation-31oct25\n\n🙏🏻 *आपकी उपस्थिति हमारे लिए परम सौभाग्य की बात होगी।*  \n\nसादर,  \n*अग्रवाल परिवार*  \n📞 +91 9837046876 | +91 7906518764`;
         } else {
             // English message
-            message = `॥ Jai Shri Ram ॥\n॥ Shri Hanumate Namah ॥\n\nWith the divine grace of the Almighty,  \nwe are organizing a sacred *Sundarkaand Paath*  \nat our residence.\n\nOn this auspicious occasion,  \nyou and your family are cordially invited  \nto join us and seek the blessings of Lord Hanuman. 🙏🏻\n\n🗓️ *Date:* Friday, 31st October 2025  \n🕣 *Paath begins:* 1:00 PM  \n🕉️ *Aarti:* 6:00 PM  \n🍛 *Prasad:* 6:30 PM onwards  \n\n📍 *Venue:*  \nHouse No. 9, Sai Vatika Colony Phase 1,  \nOpposite Shekhar Sarraf Memorial Hospital(Rusa),  \nAgra Road, Aligarh, Uttar Pradesh - 202001  \n\n🗺️ *Google Map:*  \n👉 ${mapsLink}\n\n🌐 *For complete details and directions:*  \n👉 https://tinyurl.com/invitation-31oct25\n\n🙏🏻 Your presence will be a blessing to us on this sacred day.  \n\nWith regards,  \n*Mr. Vinod Kumar Agrawal, Mrs. Seema Agrawal*  \n📞 +91 9837046876 | +91 7906518764`;
+            message = `॥ Jai Shri Ram ॥\n॥ Shri Hanumate Namah ॥\n\nWith the divine grace of the Almighty,  \nwe are organizing a sacred *Sundarkaand Paath*  \nat our residence.\n\nOn this auspicious occasion,  \nyou and your family are cordially invited  \nto join us and seek the blessings of Lord Hanuman. 🙏🏻\n\n🗓️ *Date:* Friday, 31st October 2025  \n🕣 *Paath begins:* 2:00 PM  \n🕉️ *Aarti:* 6:00 PM  \n🍛 *Prasad:* 6:30 PM onwards  \n\n📍 *Venue:*  \nHouse No. 9, Sai Vatika Colony Phase 1,  \nOpposite Rusa Medical Centre,  \nAgra Road, Aligarh, Uttar Pradesh - 202001  \n\n🗺️ *Google Map:*  \n👉 ${mapsLink}\n\n🌐 *For complete details and directions:*  \n👉 https://tinyurl.com/invitation-31oct25\n\n🙏🏻 Your presence will be a blessing to us on this sacred day.  \n\nWith regards,  \n*The Agrawal Family*  \n📞 +91 9837046876 | +91 7906518764`;
         }
         window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
     };
@@ -343,7 +343,7 @@ const MainPage = () => {
                     </div>
 
                     {/* Blessing Messages */}
-                    <div className="mb-4 sm:mb-6 space-y-3">
+{/*                    <div className="mb-4 sm:mb-6 space-y-3">
                         <p className={`text-sm sm:text-base text-sacred-gold text-center leading-relaxed`}>
                             {t('invitation.blessing_text')}
                         </p>
@@ -351,7 +351,7 @@ const MainPage = () => {
                             {t('invitation.presence_blessing')}
                         </p>
                         <div className="w-16 sm:w-20 h-1 golden-gradient mx-auto rounded-full"></div>
-                    </div>
+                    </div>*/}
 
                     {/* Contact Information */}
                     <div className="mb-4 sm:mb-6">

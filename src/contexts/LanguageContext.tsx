@@ -28,7 +28,7 @@ const translations = {
     'invitation.date': 'दिनांक: शुक्रवार, 31 अक्टूबर 2025',
     'invitation.puja': 'पाठ आरंभ: दोपहर 1:00 बजे',
     'invitation.aarti': 'आरती: सांय 6:00 बजे',
-    'invitation.prasad': 'प्रसाद: सांय 6:30 बजे से',
+    'invitation.prasad': 'प्रसादी: सांय 6:30 बजे से',
 
     // Venue Information
     'invitation.venue': 'स्थान',
@@ -38,7 +38,7 @@ const translations = {
     'invitation.hosted_by': 'निवेदक',
     'invitation.blessing_text': 'कृपया इस निमंत्रण को स्वीकार कर हमारी खुशियों में शामिल होकर हमें धन्य करें',
     'invitation.presence_blessing': 'आपकी उपस्थिति से कार्यक्रम को पुण्य प्राप्त होगा',
-    'invitation.regards': 'सादर - श्री विनोद कुमार अग्रवाल, श्रीमती सीमा अग्रवाल',
+    'invitation.regards': 'श्री विनोद कुमार अग्रवाल',
     'invitation.contact': 'संपर्क: +91 9837046876, +91 7906518764',
     'invitation.gratitude': 'धन्यवाद',
 
@@ -77,7 +77,7 @@ const translations = {
     'invitation.hosted_by': 'Hosted By',
     'invitation.blessing_text': 'We seek your blessings and gracious presence to make this sacred occasion more meaningful',
     'invitation.presence_blessing': 'Your presence will add sanctity to our prayers',
-    'invitation.regards': 'Mr. Vinod Kumar Agrawal, Mrs. Seema Agrawal',
+    'invitation.regards': 'Mr. Vinod Kumar Agrawal',
     'invitation.contact': 'Contact: +91 9837046876, +91 7906518764',
     'invitation.gratitude': 'Thank you',
 
